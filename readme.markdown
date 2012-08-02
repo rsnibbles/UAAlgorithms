@@ -3,7 +3,7 @@
 
 ### The Repository
 
-This subversion repository will serve to store generic algorithms for programming problems and contests. Feel free to modify anything, as long as it is productive and purposeful, and help out when possible. 
+This git repository will serve to store generic algorithms for programming problems and contests. Feel free to modify anything, as long as it is productive and purposeful, and help out when possible. 
 
 Currently, we have several sections for different types of algorithms:
 
