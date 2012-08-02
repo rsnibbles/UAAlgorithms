@@ -1,4 +1,5 @@
+package UATest;
 
 interface TestAlg {
-	public void runTest();
+	public void runTest(boolean printDebug);
 }
