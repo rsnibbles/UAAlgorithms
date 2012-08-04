@@ -11,25 +11,27 @@ public class PrimeGenerator
 		a specific prime) then make sure you add that simple optimization.
 	*/
 	
+	boolean notPrime = true; //true is used as notPrime because false is default
+	
 	ArrayList<Integer> generate(int n)
 	{
-		int[] line = new int[n];
+		boolean[] line = new boolean[n];
 		ArrayList<Integer> primes = new ArrayList<Integer>();
 		if(n <= 2){
 			System.err.println("n is too small, must be >2.");
 			return null;
 		}
-		line[0] = 1; //Not really necessary, because they're out of scope of the loop
-		line[1] = 1; //but they're also not prime.
+		line[0] = notPrime; //Not really necessary, because they're out of scope of the loop
+		line[1] = notPrime; //but they're also not prime.
 		
 		for(int i = 2; i < line.length; ++i)
 		{
-			if(line[i] != 0) continue;
+			if(line[i]) continue;
 			for(int j = 2*i; j < line.length; j+=i)
 			{
-				line[j] = 1;
+				line[j] = notPrime;
 			}
-			primes.add(new Integer(line[i]));
+			primes.add(new Integer(i));
 		}
 		return primes;
 	}
