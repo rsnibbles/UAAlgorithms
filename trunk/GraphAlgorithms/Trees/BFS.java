@@ -2,35 +2,34 @@ import java.util.*;
 
 public class BFS
 {
-	// given the an array of nodes, will traverse the entire tree in a breadth first search,
-	// starting from the node at graph[0]
+	// given the an array of nodes, will traverse the entire tree in a breadth
+	// first search, starting from the node at graph[0]
 	public void BFS(ArrayList<Node> graph)
 	{
 		ArrayList<Node> queue = new ArrayList<Node>();
 
-		queue.add(graph[0]);
-		queue[0].visited = true; // so that we don't visit it again
+		queue.add(graph.get(0));
 		while(!queue.isEmpty())
 		{
 			Node cur_node = queue.remove(0);
-			cur_node.visited = true;
-			for(int index = 0; index < cur_node.children.size(); index++)
+			cur_node.visited = true; // so that we don't visit it again
+			for(Node node : cur_node.children)
 			{
-				if(!cur_node.children[index].visited)
-				{
-					queue.add(cur_node.children[index];
-					cur_node.children[index].visited = true;
-				}
+				if(!node.visited)
+					queue.add(node);
 			}
 		}
 	}
 
-	class Node
+	public static class Node
 	{
+		public ArrayList<Node> children;
+		public boolean visited = false;
+
 		public Node(ArrayList<Node> childs)
 		{
-			ArrayList<Node> children = new Arraylist<Node>(childs);
-			boolean visited = false;
+			this.children = new ArrayList<Node>(childs);
+			this.visited = false;
 		}
 	}
 }
