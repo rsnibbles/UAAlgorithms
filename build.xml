@@ -1,0 +1,57 @@
+<project>
+	<target name="clean">
+		<delete> 
+			<fileset dir="GraphAlgorithms/Floyds/" includes="*.class"/>
+			<fileset dir="GraphAlgorithms/Trees/BFS/" includes="*.class"/>
+			<fileset dir="GraphAlgorithms/Trees/DFS/" includes="*.class"/>
+			<fileset dir="GraphAlgorithms/MST/Kruskals/" includes="*.class"/>
+			<fileset dir="DynamicProgramming/LongestCommonSubstring/" includes="*.class"/>
+			<fileset dir="Math/PrimeFactorization/" includes="*.class"/>
+			<fileset dir="Math/PrimeGenerator/" includes="*.class"/>
+			<fileset dir="test/" includes="*.class"/>
+		</delete>
+	</target>
+
+	<target name="compile">
+		<javac includeantruntime="false" srcdir="GraphAlgorithms/Floyds/"/>
+		<javac includeantruntime="false" srcdir="GraphAlgorithms/Trees/BFS/"/>
+		<javac includeantruntime="false" srcdir="GraphAlgorithms/Trees/DFS/"/>
+		<javac includeantruntime="false" srcdir="GraphAlgorithms/MST/Kruskals/"/>
+		<javac includeantruntime="false" srcdir="DynamicProgramming/LongestCommonSubstring/"/>
+		<javac includeantruntime="false" srcdir="Math/PrimeFactorization/"/>
+		<javac includeantruntime="false" srcdir="Math/PrimeGenerator/"/>
+		<javac includeantruntime="false" srcdir="test/"/>
+	</target>
+
+	<target name="compile Floyds">
+		<javac includeantruntime="false" srcdir="GraphAlgorithms/Floyds/"/>
+	</target>
+
+	<target name="compile BFS">
+		<javac includeantruntime="false" srcdir="GraphAlgorithms/Trees/BFS/"/>
+	</target>
+
+	<target name="compile DFS">
+		<javac includeantruntime="false" srcdir="GraphAlgorithms/Trees/DFS/"/>
+	</target>
+
+	<target name="compile Kruskals">
+		<javac includeantruntime="false" srcdir="GraphAlgorithms/MST/Kruskals/"/>
+	</target>
+
+	<target name="compile LongestCommonSubstring">
+		<javac includeantruntime="false" srcdir="DynamicProgramming/LongestCommonSubstring/"/>
+	</target>
+
+	<target name="compile PrimeFactorization">
+		<javac includeantruntime="false" srcdir="Math/PrimeFactorization/"/>
+	</target>
+
+	<target name="compile PrimeGenerator">
+		<javac includeantruntime="false" srcdir="Math/PrimeGenerator/"/>
+	</target>
+
+	<target name="compile test/">
+		<javac includeantruntime="false" srcdir="test/"/>
+	</target>
+</project>
