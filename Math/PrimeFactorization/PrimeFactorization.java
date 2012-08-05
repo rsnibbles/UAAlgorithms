@@ -1,24 +1,20 @@
 import java.util.*;
+import java.lang.*;
 
 public class PrimeFactorization
 {
-/*
 
-THIS DOES NOT COMPILE. NEEDS TO BE FIXED
-
-
-
-	long[] doPrimeFactorization(long x)
+	public ArrayList<Long> doPrimeFactorization(long x)
 	{
 		ArrayList<Long> factors = new ArrayList<Long>();
 		long counter;
 
 		while((x%2) == 0) {
-			factors.add(2);
+			factors.add(new Long(2));
 			x = x/2;
 		}
 
-		i = 3;
+		long i = 3;
 
 		while(i < (x/2) + 1) {
 			if((x % i) == 0) {
@@ -35,5 +31,4 @@ THIS DOES NOT COMPILE. NEEDS TO BE FIXED
 
 		return factors;
 	}
-*/
 }
