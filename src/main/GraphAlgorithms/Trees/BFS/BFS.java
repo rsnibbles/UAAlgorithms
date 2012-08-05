@@ -9,14 +9,17 @@ public class BFS
 		ArrayList<Node> queue = new ArrayList<Node>();
 
 		queue.add(graph.get(0));
+		queue.get(0).visited = true; // so that we don't visit it again
 		while(!queue.isEmpty())
 		{
 			Node cur_node = queue.remove(0);
-			cur_node.visited = true; // so that we don't visit it again
 			for(Node node : cur_node.children)
 			{
 				if(!node.visited)
+				{
 					queue.add(node);
+					node.visited = true;
+				}
 			}
 		}
 	}
