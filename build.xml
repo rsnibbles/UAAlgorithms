@@ -10,6 +10,7 @@
 	</target>
 
 	<target name="compile">
+		<!-- Everything should compile to all where all the tests will be run -->
 		<javac includeantruntime="false" srcdir="src/test/java/all" destdir="target/classes/all/"/>
 		<javac includeantruntime="false" srcdir="src/main/GraphAlgorithms/Floyds/" destdir="target/classes/all/"/>
 		<javac includeantruntime="false" srcdir="src/main/GraphAlgorithms/Trees/BFS/" destdir="target/classes/all/"/>
@@ -19,41 +20,61 @@
 		<javac includeantruntime="false" srcdir="src/main/Math/PrimeFactorization/" destdir="target/classes/all/"/>
 		<javac includeantruntime="false" srcdir="src/main/Math/PrimeGenerator/" destdir="target/classes/all/"/>
 
+		<!-- Each algorithm needs the data from the main directory compiled and the test directory -->
+
+		<!-- Individual directory for PrimeFactorization -->
+		<javac includeantruntime="false" srcdir="src/test/resources/" destdir="target/classes/Math/PrimeFactorization/"/>
+		<javac includeantruntime="false" srcdir="src/main/Math/PrimeFactorization/" destdir="target/classes/Math/PrimeFactorization/"/>
+		<javac includeantruntime="false" srcdir="src/test/java/Math/PrimeFactorization/" destdir="target/classes/Math/PrimeFactorization/"/>
+
+		<!-- Individual directory for SieveOfEratosthenes -->
+		<javac includeantruntime="false" srcdir="src/test/resources/" destdir="target/classes/Math/PrimeGenerator/SieveOfEratosthenes/"/>
+
+		<!-- Individual directory for LongestCommonSubstring -->
+		<javac includeantruntime="false" srcdir="src/test/resources/" destdir="target/classes/DynamicProgramming/LongestCommonSubstring/"/>
+
+		<!-- Individual directory for Floyds -->
+		<javac includeantruntime="false" srcdir="src/test/resources/" destdir="target/classes/GraphAlgorithms/Floyds/"/>
+	</target>
+
+<!-- Below are the definitions for building individual parts -->
+
+	<target name="compile Floyds">
+		<javac includeantruntime="false" srcdir="src/main/GraphAlgorithms/Floyds/" destdir="target/classes/all/"/>
+	</target>
+
+	<target name="compile BFS">
+		<javac includeantruntime="false" srcdir="src/main/GraphAlgorithms/Trees/BFS/" destdir="target/classes/all/"/>
+	</target>
+
+	<target name="compile DFS">
+		<javac includeantruntime="false" srcdir="src/main/GraphAlgorithms/Trees/DFS/" destdir="target/classes/all/"/>
+	</target>
+
+	<target name="compile Kruskals">
+		<javac includeantruntime="false" srcdir="src/main/GraphAlgorithms/MST/Kruskals/" destdir="target/classes/all/"/>
+	</target>
+
+	<target name="compile LongestCommonSubstring">
+		<javac includeantruntime="false" srcdir="src/test/resources/" destdir="target/classes/DynamicProgramming/LongestCommonSubstring/"/>
+	</target>
+
+	<target name="compile PrimeFactorization">
+		<javac includeantruntime="false" srcdir="src/main/Math/PrimeFactorization/" destdir="target/classes/all/"/>
+		<javac includeantruntime="false" srcdir="src/main/Math/PrimeFactorization/" destdir="target/classes/Math/PrimeFactorization/"/>
+		<javac includeantruntime="false" srcdir="src/test/java/Math/PrimeFactorization/" destdir="target/classes/Math/PrimeFactorization/"/>
+	</target>
+
+	<target name="compile PrimeGenerator">
+		<javac includeantruntime="false" srcdir="src/main/Math/PrimeGenerator/" destdir="target/classes/all/"/>
+	</target>
+
+
+	<!-- compiles everything needed for any testing -->
+	<target name="compile test/">
 		<javac includeantruntime="false" srcdir="src/test/resources/" destdir="target/classes/Math/PrimeFactorization/"/>
 		<javac includeantruntime="false" srcdir="src/test/resources/" destdir="target/classes/Math/PrimeGenerator/SieveOfEratosthenes/"/>
 		<javac includeantruntime="false" srcdir="src/test/resources/" destdir="target/classes/DynamicProgramming/LongestCommonSubstring/"/>
 		<javac includeantruntime="false" srcdir="src/test/resources/" destdir="target/classes/GraphAlgorithms/Floyds/"/>
-	</target>
-
-	<target name="compile Floyds">
-		<javac includeantruntime="false" srcdir="GraphAlgorithms/Floyds/"/>
-	</target>
-
-	<target name="compile BFS">
-		<javac includeantruntime="false" srcdir="GraphAlgorithms/Trees/BFS/"/>
-	</target>
-
-	<target name="compile DFS">
-		<javac includeantruntime="false" srcdir="GraphAlgorithms/Trees/DFS/"/>
-	</target>
-
-	<target name="compile Kruskals">
-		<javac includeantruntime="false" srcdir="GraphAlgorithms/MST/Kruskals/"/>
-	</target>
-
-	<target name="compile LongestCommonSubstring">
-		<javac includeantruntime="false" srcdir="DynamicProgramming/LongestCommonSubstring/"/>
-	</target>
-
-	<target name="compile PrimeFactorization">
-		<javac includeantruntime="false" srcdir="Math/PrimeFactorization/"/>
-	</target>
-
-	<target name="compile PrimeGenerator">
-		<javac includeantruntime="false" srcdir="Math/PrimeGenerator/"/>
-	</target>
-
-	<target name="compile test/">
-		<javac includeantruntime="false" srcdir="test/"/>
 	</target>
 </project>
