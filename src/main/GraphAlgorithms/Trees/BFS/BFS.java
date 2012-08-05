@@ -13,12 +13,12 @@ public class BFS
 		while(!queue.isEmpty())
 		{
 			Node cur_node = queue.remove(0);
-			for(Node node : cur_node.children)
+			for(Node child : cur_node.children)
 			{
-				if(!node.visited)
+				if(!child.visited)
 				{
-					queue.add(node);
-					node.visited = true;
+					queue.add(child);
+					child.visited = true;
 				}
 			}
 		}
