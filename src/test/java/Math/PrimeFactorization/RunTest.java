@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class RunPrimeFactorizationTest {
+public class RunTest {
 	public static void main(String[] args) {
 		TestPrimeFactorization test = new TestPrimeFactorization();
 
