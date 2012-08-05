@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class PrimeFactorization
+public class TrialDivision
 {
 
 	public ArrayList<Long> doPrimeFactorization(long x)
