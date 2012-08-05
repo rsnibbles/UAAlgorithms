@@ -1,42 +1,61 @@
 #!/bin/bash
 
-mdir="src/main/"
+main_dir="main/"
+test_dir="test/"
+tdir="target/"
 jc='javac includeantruntime="false"'
 
 function get_target_name() {
-	if [[ -n $(echo $1 | grep '.java') ]]; then
-		echo $1 | tr '/' '\n' | tail -1 | cut -d'.' -f1
+	if [[ -n $(echo $2 | grep '.java') ]]; then
+		echo $2 | tr '/' '\n' | tail -1 | cut -d'.' -f1
 	else
-		echo $1 | sed "s|^$mdir||"
+		# TODO: oh god why
+		if [[ $1 == $test_dir ]]; then
+			echo -n "Test"
+		fi
+		echo $2 | sed "s|^$1||"
 	fi
 }
 
-function gen_compile() {
-	echo -e "\t<target name=\"compile\">"
+function non_test_version() {
+	echo $1 | sed 's/Test//'
+}
 
-	find "$mdir" -type f -name '*.java' | while read path; do
-		echo "$path" | sed "s|^$mdir||" | cut -d'/' -f1
+# gen_tlt "compile" "$main_dir" >> build.xml
+function gen_tlt() {
+	echo ""
+	echo -e "\t<target name=\"$1\">"
+
+	find "$2" -type f -name '*.java' | while read path; do
+		get_target_name "$2" "$(echo "$path" | sed "s|^$2||" | cut -d'/' -f1)"
 	done | sort -u | sed -e 's/^/\t\t<antcall target="/' -e 's|$|" />|'
 
 	echo -e "\t</target>"
 
-	find "$mdir" -type f -name '*.java' | while read path; do
-		echo "$path" | sed "s|^$mdir||" | cut -d'/' -f1
+	find "$2" -type f -name '*.java' | while read path; do
+		echo "$path" | sed "s|^$2||" | cut -d'/' -f1
 	done | sort -u | while read target; do
-		gen_build_target "$target"
+		gen_target "$target" "$2"
 	done
 }
 
-function gen_build_target() {
-	if [[ -n $(echo "$mdir$1" | grep '.java$') ]]; then
+function gen_target() { # {{{
+	if [[ -n $(echo "$2$1" | grep '.java$') ]]; then
 		fn="$(echo $1 | tr '/' '\n' | tail -1)"
 		tn="$(echo $fn | cut -d'.' -f1)"
-		sdir="$(echo "$mdir$1" | sed -r 's|/[^/]+$|/|')"
-		tdir="$(echo "$sdir" | sed 's|src|target|' )"
+		sdir="$(echo "$2$1" | sed -r 's|/[^/]+$|/|')"
+
 		echo ""
+		# print algorithm target alias
 		echo -e "\t<target name=\"$tn\""
 		echo -e "\t\tdepends=\"$1\" />"
-		echo -e "\t<target name=\"$1\">"
+
+		echo -ne "\t<target name=\"$1\""
+		# TODO: oh god why
+		if [[ $2 == $test_dir ]]; then
+			echo -en " depends=\"$(non_test_version $1)\""
+		fi
+		echo -e " >"
 		echo -e "\t\t<mkdir dir=\"$tdir\" />"
 		echo -e "\t\t<$jc srcdir=\"$sdir\" destdir=\"$tdir\" includes=\"$fn\" />"
 		echo -e "\t</target>"
@@ -44,22 +63,32 @@ function gen_build_target() {
 	fi
 
 	echo ""
-	echo -e "\t<target name=\"$1\" "
+	# TODO: oh god why
+	if [[ $2 == $test_dir ]]; then
+		echo -e "\t<target name=\"Test$1\" "
+	else
+		echo -e "\t<target name=\"$1\" "
+	fi
 
-	find "$mdir$1" -mindepth 1 -maxdepth 1 | while read ltname; do
-		get_target_name "$ltname"
-	done | sort -u | tr '\n' ',' | sed -e 's/^/\t\tdepends="/' -e 's/,$/"/'
+	find "$2$1" -mindepth 1 -maxdepth 1 | while read ltname; do
+		get_target_name "$2" "$ltname"
+	done | sort -u | tr '\n' ',' | sed -e 's/^/\t\tdepends="/' -e 's/,$//'
 
-	echo -e " />"
+	# TODO: oh god why
+	if [[ $2 == $test_dir ]]; then
+		echo ",$(non_test_version $1)"
+	fi
+
+	echo -e "\" />"
 
 	if [[ -z $(echo $1 | grep '.java$') ]]; then
-		find "$mdir$1" -type f -name '*.java' | while read path; do
-			echo "$1/$(echo "$path" | sed "s|^$mdir$1||" | cut -d'/' -f2)"
+		find "$2$1" -type f -name '*.java' | while read path; do
+			echo "$1/$(echo "$path" | sed "s|^$2$1||" | cut -d'/' -f2)"
 		done | sort -u | while read target; do
-			gen_build_target "$target"
+			gen_target "$target" "$2"
 		done
 	fi
-}
+} # }}}
 
 gcid="$(git rev-list --all --max-count=1)"
 echo "<!-- generated: $(date) by genbuild.sh @$gcid -->" > build.xml
@@ -74,12 +103,10 @@ cat >> build.xml << ENDHEADER
 		<antcall target="compile" />
 		<antcall target="test" />
 	</target>
-
 ENDHEADER
 
-gen_compile >> build.xml
-
-
+gen_tlt "compile" "$main_dir" >> build.xml
+gen_tlt "tests" "$test_dir" >> build.xml
 
 cat >> build.xml << ENDFOOTER
 </project>

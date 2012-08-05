@@ -1,3 +1,4 @@
+package main.GraphAlgorithms.PathFinding;
 import java.util.*;
 
 public class Floyds

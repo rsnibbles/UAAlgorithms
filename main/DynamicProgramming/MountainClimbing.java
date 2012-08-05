@@ -1,3 +1,4 @@
+package main.DynamicProgramming;
 import java.util.*;
 
 public class MountainClimbing

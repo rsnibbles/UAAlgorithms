@@ -1,3 +1,4 @@
+package main.GraphAlgorithms.MST;
 import java.util.*;
 
 /*

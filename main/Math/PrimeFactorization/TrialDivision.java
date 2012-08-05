@@ -1,3 +1,4 @@
+package main.Math.PrimeFactorization;
 import java.util.*;
 
 public class TrialDivision

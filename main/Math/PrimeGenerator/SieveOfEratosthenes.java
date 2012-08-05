@@ -1,3 +1,4 @@
+package main.Math.PrimeGenerator;
 import java.util.*;
 
 public class SieveOfEratosthenes
