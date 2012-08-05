@@ -1,5 +1,5 @@
 package test;
 
 public interface TestAlg {
-	public void runTest(boolean printDebug);
+	public static void runTest(boolean printDebug);
 }
