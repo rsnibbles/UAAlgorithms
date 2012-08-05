@@ -71,7 +71,7 @@
 
 
 	<!-- compiles everything needed for any testing -->
-	<target name="compile test/">
+	<target name="compile test">
 		<javac includeantruntime="false" srcdir="src/test/resources/" destdir="target/classes/Math/PrimeFactorization/"/>
 		<javac includeantruntime="false" srcdir="src/test/resources/" destdir="target/classes/Math/PrimeGenerator/SieveOfEratosthenes/"/>
 		<javac includeantruntime="false" srcdir="src/test/resources/" destdir="target/classes/DynamicProgramming/LongestCommonSubstring/"/>
