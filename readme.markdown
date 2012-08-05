@@ -5,6 +5,16 @@
 
 This git repository will serve to store generic algorithms for programming problems and contests. Feel free to modify anything, as long as it is productive and purposeful, and help out when possible. 
 
+The repository is structured in order to make the build process easier. All code for the algorithms should go under the src/main/ directory in the appropriate directory. Any code for testing the algorithms should be placed under src/test/ in the correct corresponding directory.
+
+The code is built using an ant build script. Here are a few useful commands:
+* ant clean
+* ant compile
+* ant "compile test"
+* ant "compile [algorithm directory]"
+
+If you add or remove something, please make sure the build script is up to date. When the build script is run all algorithm and test code should go to the appropriate directory under target/classes/. Everything should get compiled to target/classes/all/ as well as to it's own specific directory.
+
 Currently, we have several sections for different types of algorithms:
 
 * Backtracking
