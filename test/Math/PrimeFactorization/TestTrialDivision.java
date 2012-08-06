@@ -4,9 +4,19 @@ import main.Math.PrimeFactorization.TrialDivision;
 
 public class TestTrialDivision
 {
+	public static boolean success = true;
 	public static void main(String[] args)
 	{
 		testOne(true);
+		if(!success)
+		{
+			System.out.println("FAILED: TestTrialDivision");
+			System.exit(1);
+		}
+		else
+		{
+			System.exit(0);
+		}
 	}
 
 	public static void testOne(boolean printDebug)
@@ -55,6 +65,7 @@ public class TestTrialDivision
 
 	private static void standardFactorsResult(boolean printDebug, long value)
 	{
+		success = false;
 		if(printDebug)
 		{
 			System.out.println("FAILED: public ArrayList<Long> " +

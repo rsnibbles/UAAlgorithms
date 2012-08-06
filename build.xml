@@ -1,4 +1,4 @@
-<!-- generated: Sun Aug  5 14:12:01 EDT 2012 by genbuild.sh @1ef79bd85fe8a894f692fca49a734565ffc6cd46 -->
+<!-- generated: Mon Aug  6 13:15:46 EDT 2012 by genbuild.sh @9a40305167e66d2a5346a39e71798b32155b01a3 -->
 <project name="UAAlgorithms" default="compile" >
 	<target name="clean">
 		<delete dir="target" verbose="true" includeemptydirs="true" />
@@ -80,7 +80,7 @@
 	</target>
 
 	<target name="Math" 
-		depends="Math/PrimeFactorization,Math/PrimeGenerator" />
+		depends="Math/PrimeFactorization,Math/PrimeGeneration" />
 
 	<target name="Math/PrimeFactorization" 
 		depends="TrialDivision" />
@@ -92,14 +92,14 @@
 		<javac includeantruntime="false" srcdir="main/Math/PrimeFactorization/" destdir="target/" includes="TrialDivision.java" />
 	</target>
 
-	<target name="Math/PrimeGenerator" 
+	<target name="Math/PrimeGeneration" 
 		depends="SieveOfEratosthenes" />
 
 	<target name="SieveOfEratosthenes"
-		depends="Math/PrimeGenerator/SieveOfEratosthenes.java" />
-	<target name="Math/PrimeGenerator/SieveOfEratosthenes.java" >
+		depends="Math/PrimeGeneration/SieveOfEratosthenes.java" />
+	<target name="Math/PrimeGeneration/SieveOfEratosthenes.java" >
 		<mkdir dir="target/" />
-		<javac includeantruntime="false" srcdir="main/Math/PrimeGenerator/" destdir="target/" includes="SieveOfEratosthenes.java" />
+		<javac includeantruntime="false" srcdir="main/Math/PrimeGeneration/" destdir="target/" includes="SieveOfEratosthenes.java" />
 	</target>
 
 	<target name="tests">
@@ -107,7 +107,7 @@
 	</target>
 
 	<target name="TestMath" 
-		depends="TestMath/PrimeFactorization,Math
+		depends="TestMath/PrimeFactorization,TestMath/PrimeGeneration,Math
 " />
 
 	<target name="TestMath/PrimeFactorization" 
@@ -119,5 +119,16 @@
 	<target name="Math/PrimeFactorization/TestTrialDivision.java" depends="Math/PrimeFactorization/TrialDivision.java" >
 		<mkdir dir="target/" />
 		<javac includeantruntime="false" srcdir="test/Math/PrimeFactorization/" destdir="target/" includes="TestTrialDivision.java" />
+	</target>
+
+	<target name="TestMath/PrimeGeneration" 
+		depends="TestSieveOfEratosthenes,Math/PrimeGeneration
+" />
+
+	<target name="TestSieveOfEratosthenes"
+		depends="Math/PrimeGeneration/TestSieveOfEratosthenes.java" />
+	<target name="Math/PrimeGeneration/TestSieveOfEratosthenes.java" depends="Math/PrimeGeneration/SieveOfEratosthenes.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/Math/PrimeGeneration/" destdir="target/" includes="TestSieveOfEratosthenes.java" />
 	</target>
 </project>
