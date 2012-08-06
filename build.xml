@@ -1,4 +1,4 @@
-<!-- generated: Mon Aug  6 13:25:12 EDT 2012 by genbuild.sh @ba368b8dd0e2c8b38252fa39fe4a3e265d526468 -->
+<!-- generated: Mon Aug  6 13:29:05 EDT 2012 by genbuild.sh @330624a60634c84a7161a3c838df5e0534c0a3f5 -->
 <project name="UAAlgorithms" default="compile" >
 	<target name="clean">
 		<delete dir="target" verbose="true" includeemptydirs="true" />
@@ -103,8 +103,27 @@
 	</target>
 
 	<target name="tests">
+		<antcall target="TestDynamicProgramming" />
 		<antcall target="TestGraphAlgorithms" />
 		<antcall target="TestMath" />
+	</target>
+
+	<target name="TestDynamicProgramming" 
+		depends="TestLongestCommonSubstring,TestMountainClimbing,DynamicProgramming
+" />
+
+	<target name="TestLongestCommonSubstring"
+		depends="DynamicProgramming/TestLongestCommonSubstring.java" />
+	<target name="DynamicProgramming/TestLongestCommonSubstring.java" depends="DynamicProgramming/LongestCommonSubstring.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/DynamicProgramming/" destdir="target/" includes="TestLongestCommonSubstring.java" />
+	</target>
+
+	<target name="TestMountainClimbing"
+		depends="DynamicProgramming/TestMountainClimbing.java" />
+	<target name="DynamicProgramming/TestMountainClimbing.java" depends="DynamicProgramming/MountainClimbing.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/DynamicProgramming/" destdir="target/" includes="TestMountainClimbing.java" />
 	</target>
 
 	<target name="TestGraphAlgorithms" 
