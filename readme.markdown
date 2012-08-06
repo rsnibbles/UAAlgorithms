@@ -31,6 +31,9 @@ target directory or use run.sh:
 Bash is capable of tab completing the fully qualified class name in the first
 two examples.
 
+To run all the tests, a `runtests.sh` script has been provided. It will run
+all tests that have been built.
+
 Currently, we have several sections for different types of algorithms:
 
 * Backtracking
