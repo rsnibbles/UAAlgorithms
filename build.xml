@@ -1,4 +1,4 @@
-<!-- generated: Mon Aug  6 13:15:46 EDT 2012 by genbuild.sh @9a40305167e66d2a5346a39e71798b32155b01a3 -->
+<!-- generated: Mon Aug  6 13:25:12 EDT 2012 by genbuild.sh @ba368b8dd0e2c8b38252fa39fe4a3e265d526468 -->
 <project name="UAAlgorithms" default="compile" >
 	<target name="clean">
 		<delete dir="target" verbose="true" includeemptydirs="true" />
@@ -103,7 +103,59 @@
 	</target>
 
 	<target name="tests">
+		<antcall target="TestGraphAlgorithms" />
 		<antcall target="TestMath" />
+	</target>
+
+	<target name="TestGraphAlgorithms" 
+		depends="TestGraphAlgorithms/MST,TestGraphAlgorithms/PathFinding,TestGraphAlgorithms/Trees,GraphAlgorithms
+" />
+
+	<target name="TestGraphAlgorithms/MST" 
+		depends="TestKruskals,TestPrims,GraphAlgorithms/MST
+" />
+
+	<target name="TestKruskals"
+		depends="GraphAlgorithms/MST/TestKruskals.java" />
+	<target name="GraphAlgorithms/MST/TestKruskals.java" depends="GraphAlgorithms/MST/Kruskals.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/GraphAlgorithms/MST/" destdir="target/" includes="TestKruskals.java" />
+	</target>
+
+	<target name="TestPrims"
+		depends="GraphAlgorithms/MST/TestPrims.java" />
+	<target name="GraphAlgorithms/MST/TestPrims.java" depends="GraphAlgorithms/MST/Prims.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/GraphAlgorithms/MST/" destdir="target/" includes="TestPrims.java" />
+	</target>
+
+	<target name="TestGraphAlgorithms/PathFinding" 
+		depends="TestFloyds,GraphAlgorithms/PathFinding
+" />
+
+	<target name="TestFloyds"
+		depends="GraphAlgorithms/PathFinding/TestFloyds.java" />
+	<target name="GraphAlgorithms/PathFinding/TestFloyds.java" depends="GraphAlgorithms/PathFinding/Floyds.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/GraphAlgorithms/PathFinding/" destdir="target/" includes="TestFloyds.java" />
+	</target>
+
+	<target name="TestGraphAlgorithms/Trees" 
+		depends="TestBFS,TestDFS,GraphAlgorithms/Trees
+" />
+
+	<target name="TestBFS"
+		depends="GraphAlgorithms/Trees/TestBFS.java" />
+	<target name="GraphAlgorithms/Trees/TestBFS.java" depends="GraphAlgorithms/Trees/BFS.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/GraphAlgorithms/Trees/" destdir="target/" includes="TestBFS.java" />
+	</target>
+
+	<target name="TestDFS"
+		depends="GraphAlgorithms/Trees/TestDFS.java" />
+	<target name="GraphAlgorithms/Trees/TestDFS.java" depends="GraphAlgorithms/Trees/DFS.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/GraphAlgorithms/Trees/" destdir="target/" includes="TestDFS.java" />
 	</target>
 
 	<target name="TestMath" 

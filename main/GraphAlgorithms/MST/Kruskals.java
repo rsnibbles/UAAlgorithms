@@ -1,7 +1,7 @@
 package main.GraphAlgorithms.MST;
 import java.util.*;
 
-class Kruskals {
+public class Kruskals {
 
 	// performs Kruskal's MST algorithm with a list of nodes in the starting graph and list of connections
 	public void doKruskals(ArrayList<Node> nodes, ArrayList<Connection> connections){
