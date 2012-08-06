@@ -76,7 +76,7 @@ function gen_target() { # {{{
 
 	# TODO: oh god why
 	if [[ $2 == $test_dir ]]; then
-		echo ",$(non_test_version $1)"
+		echo -n ",$(non_test_version $1)"
 	fi
 
 	echo -e "\" />"
@@ -94,14 +94,14 @@ gcid="$(git rev-list --all --max-count=1)"
 echo "<!-- generated: $(date) by genbuild.sh @$gcid -->" > build.xml
 
 cat >> build.xml << ENDHEADER
-<project name="UAAlgorithms" default="compile" >
+<project name="UAAlgorithms" default="all" >
 	<target name="clean">
 		<delete dir="target" verbose="true" includeemptydirs="true" />
 	</target>
 
 	<target name="all">
 		<antcall target="compile" />
-		<antcall target="test" />
+		<antcall target="tests" />
 	</target>
 ENDHEADER
 

@@ -1,12 +1,12 @@
-<!-- generated: Mon Aug  6 13:29:05 EDT 2012 by genbuild.sh @330624a60634c84a7161a3c838df5e0534c0a3f5 -->
-<project name="UAAlgorithms" default="compile" >
+<!-- generated: Mon Aug  6 14:23:39 EDT 2012 by genbuild.sh @821c52dc98d8745535a700192aafc51c8fb56884 -->
+<project name="UAAlgorithms" default="all" >
 	<target name="clean">
 		<delete dir="target" verbose="true" includeemptydirs="true" />
 	</target>
 
 	<target name="all">
 		<antcall target="compile" />
-		<antcall target="test" />
+		<antcall target="tests" />
 	</target>
 
 	<target name="compile">
@@ -109,8 +109,7 @@
 	</target>
 
 	<target name="TestDynamicProgramming" 
-		depends="TestLongestCommonSubstring,TestMountainClimbing,DynamicProgramming
-" />
+		depends="TestLongestCommonSubstring,TestMountainClimbing,DynamicProgramming" />
 
 	<target name="TestLongestCommonSubstring"
 		depends="DynamicProgramming/TestLongestCommonSubstring.java" />
@@ -127,12 +126,10 @@
 	</target>
 
 	<target name="TestGraphAlgorithms" 
-		depends="TestGraphAlgorithms/MST,TestGraphAlgorithms/PathFinding,TestGraphAlgorithms/Trees,GraphAlgorithms
-" />
+		depends="TestGraphAlgorithms/MST,TestGraphAlgorithms/PathFinding,TestGraphAlgorithms/Trees,GraphAlgorithms" />
 
 	<target name="TestGraphAlgorithms/MST" 
-		depends="TestKruskals,TestPrims,GraphAlgorithms/MST
-" />
+		depends="TestKruskals,TestPrims,GraphAlgorithms/MST" />
 
 	<target name="TestKruskals"
 		depends="GraphAlgorithms/MST/TestKruskals.java" />
@@ -149,8 +146,7 @@
 	</target>
 
 	<target name="TestGraphAlgorithms/PathFinding" 
-		depends="TestFloyds,GraphAlgorithms/PathFinding
-" />
+		depends="TestFloyds,GraphAlgorithms/PathFinding" />
 
 	<target name="TestFloyds"
 		depends="GraphAlgorithms/PathFinding/TestFloyds.java" />
@@ -160,8 +156,7 @@
 	</target>
 
 	<target name="TestGraphAlgorithms/Trees" 
-		depends="TestBFS,TestDFS,GraphAlgorithms/Trees
-" />
+		depends="TestBFS,TestDFS,GraphAlgorithms/Trees" />
 
 	<target name="TestBFS"
 		depends="GraphAlgorithms/Trees/TestBFS.java" />
@@ -178,12 +173,10 @@
 	</target>
 
 	<target name="TestMath" 
-		depends="TestMath/PrimeFactorization,TestMath/PrimeGeneration,Math
-" />
+		depends="TestMath/PrimeFactorization,TestMath/PrimeGeneration,Math" />
 
 	<target name="TestMath/PrimeFactorization" 
-		depends="TestTrialDivision,Math/PrimeFactorization
-" />
+		depends="TestTrialDivision,Math/PrimeFactorization" />
 
 	<target name="TestTrialDivision"
 		depends="Math/PrimeFactorization/TestTrialDivision.java" />
@@ -193,8 +186,7 @@
 	</target>
 
 	<target name="TestMath/PrimeGeneration" 
-		depends="TestSieveOfEratosthenes,Math/PrimeGeneration
-" />
+		depends="TestSieveOfEratosthenes,Math/PrimeGeneration" />
 
 	<target name="TestSieveOfEratosthenes"
 		depends="Math/PrimeGeneration/TestSieveOfEratosthenes.java" />
