@@ -34,7 +34,12 @@ Bash is capable of tab completing the fully qualified class name in the first
 two examples.
 
 To run all the tests, a `runtests.sh` script has been provided. It will run
-all tests that have been built.
+all tests that have been built, and only report failures. The return code
+indicates the number of tests that have failed.
+
+If you pass any argument to it, it will also indicate which tests have passed.
+If that is all you're interested in, try
+`./runtests.sh show_success | grep ^SUCCESS`
 
 Currently, we have several sections for different types of algorithms:
 
