@@ -18,10 +18,10 @@ function get_target_name() {
 }
 
 function non_test_version() {
-	if [[ -n $(echo $1 | grep '/') ]]; then
+	if [[ -n $(echo $1 | grep '.java') ]]; then
 		echo $(dirname "$1")/$(basename "$1" | sed 's/Test//')
 	else
-		echo "$1" | sed 's/Test//'
+		echo "$1"
 	fi
 }
 

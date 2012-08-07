@@ -1,4 +1,4 @@
-<!-- generated: Mon Aug  6 14:23:39 EDT 2012 by genbuild.sh @821c52dc98d8745535a700192aafc51c8fb56884 -->
+<!-- generated: Mon Aug  6 22:17:24 EDT 2012 by genbuild.sh @443ccb356a7c71c393f85894bc6521a84ff13677 -->
 <project name="UAAlgorithms" default="all" >
 	<target name="clean">
 		<delete dir="target" verbose="true" includeemptydirs="true" />
@@ -80,7 +80,17 @@
 	</target>
 
 	<target name="Math" 
-		depends="Math/PrimeFactorization,Math/PrimeGeneration" />
+		depends="Math/PrimalityTest,Math/PrimeFactorization,Math/PrimeGeneration" />
+
+	<target name="Math/PrimalityTest" 
+		depends="NaivePrimeTest" />
+
+	<target name="NaivePrimeTest"
+		depends="Math/PrimalityTest/NaivePrimeTest.java" />
+	<target name="Math/PrimalityTest/NaivePrimeTest.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="main/Math/PrimalityTest/" destdir="target/" includes="NaivePrimeTest.java" />
+	</target>
 
 	<target name="Math/PrimeFactorization" 
 		depends="TrialDivision" />
@@ -173,7 +183,17 @@
 	</target>
 
 	<target name="TestMath" 
-		depends="TestMath/PrimeFactorization,TestMath/PrimeGeneration,Math" />
+		depends="TestMath/PrimalityTest,TestMath/PrimeFactorization,TestMath/PrimeGeneration,Math" />
+
+	<target name="TestMath/PrimalityTest" 
+		depends="TestNaivePrimeTest,Math/PrimalityTest" />
+
+	<target name="TestNaivePrimeTest"
+		depends="Math/PrimalityTest/TestNaivePrimeTest.java" />
+	<target name="Math/PrimalityTest/TestNaivePrimeTest.java" depends="Math/PrimalityTest/NaivePrimeTest.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/Math/PrimalityTest/" destdir="target/" includes="TestNaivePrimeTest.java" />
+	</target>
 
 	<target name="TestMath/PrimeFactorization" 
 		depends="TestTrialDivision,Math/PrimeFactorization" />
