@@ -14,14 +14,16 @@ public class SieveOfEratosthenes
 	
 	boolean notPrime = true; //true is used as notPrime because false is default
 	
-	ArrayList<Integer> generate(int n)
+	public ArrayList<Integer> generate(int n)
 	{
 		boolean[] line = new boolean[n];
 		ArrayList<Integer> primes = new ArrayList<Integer>();
+		
 		if(n <= 2){
 			System.err.println("n is too small, must be >2.");
 			return null;
 		}
+
 		line[0] = notPrime; //Not really necessary, because they're out of scope of the loop
 		line[1] = notPrime; //but they're also not prime.
 		
@@ -34,6 +36,7 @@ public class SieveOfEratosthenes
 			}
 			primes.add(new Integer(i));
 		}
+
 		return primes;
 	}
 }
