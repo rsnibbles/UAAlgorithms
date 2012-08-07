@@ -4,7 +4,11 @@ total_failed=0
 while read tname; do
 	tname="$(basename "$tname" | cut -d'.' -f1)"
 	./run.sh "$tname"
-	total_failed=$((total_failed + $?))
+	fail=$?
+	total_failed=$((total_failed + fail))
+	if [[ -n $1 ]] && [[ $fail == 0 ]]; then
+		echo "SUCCESS: $tname"
+	fi
 done < <(find target/test -type f -name '*.class')
 
 if [[ $total_failed != 0 ]]; then
