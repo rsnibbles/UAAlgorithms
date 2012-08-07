@@ -55,10 +55,13 @@ function gen_target() { # {{{
 		echo -e "\t\tdepends=\"$1\" />"
 
 		echo -ne "\t<target name=\"$1\""
-		# TODO: oh god why
-		if [[ $2 == $test_dir ]]; then
-			echo -en " depends=\"$(non_test_version $1)\""
+
+		deps="$(sed -nre 's/^import (main|test)\.(.+);$/\2/p' "$2$1" | sort -u | \
+			tr '.' '/' | sed 's/$/.java/' | tr '\n' ',' | sed 's/,$//' )"
+		if [[ -n $deps ]]; then
+			echo -ne " depends=\"$deps\""
 		fi
+
 		echo -e " >"
 		echo -e "\t\t<mkdir dir=\"$tdir\" />"
 		echo -e "\t\t<$jc srcdir=\"$sdir\" destdir=\"$tdir\" includes=\"$fn\" />"

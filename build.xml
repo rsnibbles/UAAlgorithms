@@ -1,4 +1,4 @@
-<!-- generated: Mon Aug  6 22:17:24 EDT 2012 by genbuild.sh @443ccb356a7c71c393f85894bc6521a84ff13677 -->
+<!-- generated: Mon Aug  6 23:11:50 EDT 2012 by genbuild.sh @077e63cf9029f7a40a88ff153646b6b311bec1e5 -->
 <project name="UAAlgorithms" default="all" >
 	<target name="clean">
 		<delete dir="target" verbose="true" includeemptydirs="true" />
@@ -210,7 +210,7 @@
 
 	<target name="TestSieveOfEratosthenes"
 		depends="Math/PrimeGeneration/TestSieveOfEratosthenes.java" />
-	<target name="Math/PrimeGeneration/TestSieveOfEratosthenes.java" depends="Math/PrimeGeneration/SieveOfEratosthenes.java" >
+	<target name="Math/PrimeGeneration/TestSieveOfEratosthenes.java" depends="Math/PrimeFactorization/TrialDivision.java,Math/PrimeGeneration/SieveOfEratosthenes.java" >
 		<mkdir dir="target/" />
 		<javac includeantruntime="false" srcdir="test/Math/PrimeGeneration/" destdir="target/" includes="TestSieveOfEratosthenes.java" />
 	</target>
