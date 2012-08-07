@@ -18,7 +18,11 @@ function get_target_name() {
 }
 
 function non_test_version() {
-	echo $1 | sed 's/Test//'
+	if [[ -n $(echo $1 | grep '/') ]]; then
+		echo $(dirname "$1")/$(basename "$1" | sed 's/Test//')
+	else
+		echo "$1" | sed 's/Test//'
+	fi
 }
 
 # gen_tlt "compile" "$main_dir" >> build.xml
