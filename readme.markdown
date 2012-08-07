@@ -13,10 +13,12 @@ directory. Any code for testing the algorithms should be placed under
 test/ in the correct corresponding directory.
 
 The code is built using an ant build script. Here are a few useful commands:
-* ant clean
-* ant compile
-* ant tests
-* ant [algorithm directory]
+* `ant clean`
+* `ant all`
+* `ant compile`
+* `ant tests`
+* `ant [algorithm directory]`
+* `ant [specific algorithm]`
 
 If you add or remove something, please make sure the build script is up to
 date. When the build script is run all algorithms and test code should go to
@@ -24,9 +26,9 @@ the appropriate directory under target/.
 
 To run a specific test, you will have to set the classpath, `cd` into the
 target directory or use run.sh:
-* cd target; java test.Math.PrimeFactorization.TestTrialDivision
-* java -classpath target/ test.Math.PrimeFactorization.TestTrialDivision
-* ./run.sh TestTrialDivision
+* `cd target; java test.Math.PrimeFactorization.TestTrialDivision`
+* `java -classpath target/ test.Math.PrimeFactorization.TestTrialDivision`
+* `./run.sh TestTrialDivision`
 
 Bash is capable of tab completing the fully qualified class name in the first
 two examples.
