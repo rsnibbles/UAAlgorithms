@@ -13,6 +13,30 @@ public class TestMountainClimbing
 			System.out.println("FAILED: TestMountainClimbing");
 			System.exit(1);
 		}
+		testTwo(true);
+		if(!success)
+		{
+			System.out.println("FAILED: TestMountainClimbing");
+			System.exit(1);
+		}
+		testThree(true);
+		if(!success)
+		{
+			System.out.println("FAILED: TestMountainClimbing");
+			System.exit(1);
+		}
+		testFour(true);
+		if(!success)
+		{
+			System.out.println("FAILED: TestMountainClimbing");
+			System.exit(1);
+		}
+		testFive(true);
+		if(!success)
+		{
+			System.out.println("FAILED: TestMountainClimbing");
+			System.exit(1);
+		}
 		else
 		{
 			System.exit(0);
@@ -21,6 +45,100 @@ public class TestMountainClimbing
 
 	public static void testOne(boolean printDebug)
 	{
-		success = false;
+		long[][] test_array = new long[[0,0,0,10,0],
+										[0,0,0,10,0],
+										[0,0,0,10,0],
+										[0,0,0,10,0]];
+		
+		long result = climbing(test_array);
+		
+		if(result != 40)
+		{
+			success = false;
+			return;
+		}
+		else
+		{
+			return;
+		}
+	}
+	public static void testTwo(boolean printDebug)
+	{
+		long[][] test_array = new long[[10,0,0,0],
+										[0,10,0,0],
+										[0,0,10,0],
+										[0,0,0,10]];
+
+		long result = climbing(test_array);
+
+		if(result != 40)
+		{
+			success = false;
+			return;
+		}
+		else
+		{
+			return;
+		}
+	}
+	
+	public static void testThree(boolean printDebug)
+	{
+		long[][] test_array = new long[[0,0,0,10],
+										[0,0,10,0],
+										[0,10,0,0],
+										[10,0,0,0]];
+
+		long result = climbing(test_array);
+		
+		if(result != 40)
+		{
+			success = false;
+			return;
+		}
+		else
+		{
+			return;
+		}
+	}
+	
+	public static void testFour(boolean printDebug)
+	{
+		long[][] test_array = new long[[5,0,0,0],
+										 [5,0,0,5],
+										 [5,0,0,5],
+										 [5,0,0,30]];
+		
+		long result = climbing(test_array);
+		
+		if(result != 40)
+		{
+			success = false;
+			return;
+		}
+		else
+		{
+			return;
+		}
+	}
+	
+	public static void testFive(boolean printDebug)
+	{
+		long[][] test_array = new long[[5,0,0,30],
+										[5,0,0,5],
+										[5,0,0,5],
+										[5,0,0,0]];
+		
+		long result = climbing(test_array);
+		
+		if(result != 40)
+		{
+			success = false;
+			return;
+		}
+		else
+		{
+			return;
+		}
 	}
 }
