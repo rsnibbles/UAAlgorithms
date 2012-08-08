@@ -45,10 +45,10 @@ public class TestMountainClimbing
 
 	public static void testOne(boolean printDebug)
 	{
-		long[][] test_array = new long[[0,0,0,10,0],
-										[0,0,0,10,0],
-										[0,0,0,10,0],
-										[0,0,0,10,0]];
+		long[][] test_array = {{0,0,0,10,0},
+								{0,0,0,10,0},
+								{0,0,0,10,0},
+								{0,0,0,10,0}};
 		
 		long result = climbing(test_array);
 		
@@ -64,10 +64,10 @@ public class TestMountainClimbing
 	}
 	public static void testTwo(boolean printDebug)
 	{
-		long[][] test_array = new long[[10,0,0,0],
-										[0,10,0,0],
-										[0,0,10,0],
-										[0,0,0,10]];
+		long[][] test_array = {{10,0,0,0},
+								{0,10,0,0},
+								{0,0,10,0},
+								{0,0,0,10}};
 
 		long result = climbing(test_array);
 
@@ -84,10 +84,10 @@ public class TestMountainClimbing
 	
 	public static void testThree(boolean printDebug)
 	{
-		long[][] test_array = new long[[0,0,0,10],
-										[0,0,10,0],
-										[0,10,0,0],
-										[10,0,0,0]];
+		long[][] test_array = {{0,0,0,10},
+								{0,0,10,0},
+								{0,10,0,0},
+								{10,0,0,0}};
 
 		long result = climbing(test_array);
 		
@@ -104,10 +104,10 @@ public class TestMountainClimbing
 	
 	public static void testFour(boolean printDebug)
 	{
-		long[][] test_array = new long[[5,0,0,0],
-										 [5,0,0,5],
-										 [5,0,0,5],
-										 [5,0,0,30]];
+		long[][] test_array = {{5,0,0,0},
+								{5,0,0,5},
+								{5,0,0,5},
+								{5,0,0,30}};
 		
 		long result = climbing(test_array);
 		
@@ -124,10 +124,10 @@ public class TestMountainClimbing
 	
 	public static void testFive(boolean printDebug)
 	{
-		long[][] test_array = new long[[5,0,0,30],
-										[5,0,0,5],
-										[5,0,0,5],
-										[5,0,0,0]];
+		long[][] test_array = {{5,0,0,30},
+								{5,0,0,5},
+								{5,0,0,5},
+								{5,0,0,0}};
 		
 		long result = climbing(test_array);
 		

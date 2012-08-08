@@ -9,18 +9,18 @@ public class MountainClimbing
 	// all value of the are assumed to be positive, however the algorithm can be easily adapted to accomodate negatives
 	public long climbing(long[][] mountain)
 	{
-		long height = mountain.length;
-		long width = mountain[0].length;
+		int height = mountain.length;
+		int width = mountain[0].length;
 
 		long[] cur_best = mountain[height-1];
 
 		long down = 0;
 		long down_left = 0;
 		long down_right = 0;
-		for (long h = 1; h < height; h++)
+		for (int h = 1; h < height; h++)
 		{
 			long[] new_best = mountain[h];
-			for (long w = 0; w < width; w++)
+			for (int w = 0; w < width; w++)
 			{
 				down = cur_best[w];
 				down_right = (w < width-2) ? cur_best[w+1] : 0;
@@ -43,7 +43,7 @@ public class MountainClimbing
 		}
 
 		long max = 0;
-		for (long i = 0; i < width; i++)
+		for (int i = 0; i < width; i++)
 		{
 			if (cur_best[i] > max)
 			{
