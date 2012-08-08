@@ -1,4 +1,4 @@
-<!-- generated: Mon Aug  6 23:11:50 EDT 2012 by genbuild.sh @077e63cf9029f7a40a88ff153646b6b311bec1e5 -->
+<!-- generated: Tue Aug  7 20:08:31 EDT 2012 by genbuild.sh @79a76f5400398f37c04a6a1b75ee0a5fd8ef09cb -->
 <project name="UAAlgorithms" default="all" >
 	<target name="clean">
 		<delete dir="target" verbose="true" includeemptydirs="true" />
@@ -16,13 +16,20 @@
 	</target>
 
 	<target name="DynamicProgramming" 
-		depends="LongestCommonSubstring,MountainClimbing" />
+		depends="LongestCommonSubstring,MaximumSubarray,MountainClimbing" />
 
 	<target name="LongestCommonSubstring"
 		depends="DynamicProgramming/LongestCommonSubstring.java" />
 	<target name="DynamicProgramming/LongestCommonSubstring.java" >
 		<mkdir dir="target/" />
 		<javac includeantruntime="false" srcdir="main/DynamicProgramming/" destdir="target/" includes="LongestCommonSubstring.java" />
+	</target>
+
+	<target name="MaximumSubarray"
+		depends="DynamicProgramming/MaximumSubarray.java" />
+	<target name="DynamicProgramming/MaximumSubarray.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="main/DynamicProgramming/" destdir="target/" includes="MaximumSubarray.java" />
 	</target>
 
 	<target name="MountainClimbing"
@@ -119,13 +126,20 @@
 	</target>
 
 	<target name="TestDynamicProgramming" 
-		depends="TestLongestCommonSubstring,TestMountainClimbing,DynamicProgramming" />
+		depends="TestLongestCommonSubstring,TestMaximumSubarray,TestMountainClimbing,DynamicProgramming" />
 
 	<target name="TestLongestCommonSubstring"
 		depends="DynamicProgramming/TestLongestCommonSubstring.java" />
 	<target name="DynamicProgramming/TestLongestCommonSubstring.java" depends="DynamicProgramming/LongestCommonSubstring.java" >
 		<mkdir dir="target/" />
 		<javac includeantruntime="false" srcdir="test/DynamicProgramming/" destdir="target/" includes="TestLongestCommonSubstring.java" />
+	</target>
+
+	<target name="TestMaximumSubarray"
+		depends="DynamicProgramming/TestMaximumSubarray.java" />
+	<target name="DynamicProgramming/TestMaximumSubarray.java" depends="DynamicProgramming/MaximumSubarray.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/DynamicProgramming/" destdir="target/" includes="TestMaximumSubarray.java" />
 	</target>
 
 	<target name="TestMountainClimbing"
