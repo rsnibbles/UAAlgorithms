@@ -31,25 +31,27 @@ public class TestBFS
 		}
 
 		ArrayList<BFS.Node> graph = new ArrayList<BFS.Node>();
-		graph.add(tree[0]);
 		tree[0].children.add(tree[1]);
 		tree[0].children.add(tree[2]);
+
 		tree[1].children.add(tree[0]);
-		tree[2].children.add(tree[0]);
-		graph.add(tree[1]);
-		graph.add(tree[2]);
 		tree[1].children.add(tree[3]);
 		tree[1].children.add(tree[4]);
+
+		tree[2].children.add(tree[0]);
 		tree[2].children.add(tree[5]);
 		tree[2].children.add(tree[6]);
+
 		tree[3].children.add(tree[1]);
+
 		tree[4].children.add(tree[1]);
+
 		tree[5].children.add(tree[2]);
+
 		tree[6].children.add(tree[2]);
-		graph.add(tree[3]);
-		graph.add(tree[4]);
-		graph.add(tree[5]);
-		graph.add(tree[6]);
+
+		for(BFS.Node node : tree)
+			graph.add(node);
 
 		BFS bfs = new BFS();
 		ArrayList<BFS.Node> traversal = bfs.BFSTraversal(graph);
@@ -79,25 +81,27 @@ public class TestBFS
 		}
 
 		ArrayList<BFS.Node> graph = new ArrayList<BFS.Node>();
-		graph.add(tree[0]);
 		tree[0].children.add(tree[1]);
 		tree[0].children.add(tree[2]);
+
 		tree[1].children.add(tree[0]);
-		tree[2].children.add(tree[0]);
-		graph.add(tree[1]);
-		graph.add(tree[2]);
 		tree[1].children.add(tree[3]);
 		tree[1].children.add(tree[4]);
+
+		tree[2].children.add(tree[0]);
 		tree[2].children.add(tree[5]);
 		tree[2].children.add(tree[6]);
+
 		tree[3].children.add(tree[1]);
+
 		tree[4].children.add(tree[1]);
+
 		tree[5].children.add(tree[2]);
+
 		tree[6].children.add(tree[2]);
-		graph.add(tree[3]);
-		graph.add(tree[4]);
-		graph.add(tree[5]);
-		graph.add(tree[6]);
+
+		for(BFS.Node node : tree)
+			graph.add(node);
 
 		BFS bfs = new BFS();
 		ArrayList<BFS.Node> traversal = bfs.BFSTraversal(graph, 6);
