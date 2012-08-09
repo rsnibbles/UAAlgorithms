@@ -4,10 +4,10 @@ import main.DynamicProgramming.MountainClimbing;
 
 public class TestMountainClimbing
 {
+	private static MountainClimbing MC = new MountainClimbing();
 	public static boolean success = true;
 	public static void main(String[] args)
 	{
-		MountainClimbing MC = new MountainClimbing();
 		testOne(true);
 		if(!success)
 		{
