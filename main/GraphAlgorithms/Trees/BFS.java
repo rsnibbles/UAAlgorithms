@@ -3,27 +3,62 @@ import java.util.*;
 
 public class BFS
 {
-	// given the an array of nodes, will traverse the entire tree in a breadth
-	// first search, starting from the node at graph[0]
-	public void BFS(ArrayList<Node> graph)
-	{
+	/*
+	     * given the an array of nodes, will traverse the entire tree in a breadth
+	     * first search, starting from the node at graph.get(0)
+	     */
+	    public ArrayList<Node> BFSTraversal(ArrayList<Node> graph)
+	    {
+		ArrayList<Node> order = new ArrayList<Node>();
 		ArrayList<Node> queue = new ArrayList<Node>();
 
 		queue.add(graph.get(0));
 		queue.get(0).visited = true; // so that we don't visit it again
 		while(!queue.isEmpty())
 		{
-			Node cur_node = queue.remove(0);
-			for(Node child : cur_node.children)
+		    Node cur_node = queue.remove(0);
+		    order.add(cur_node);
+		    
+		    for(Node child : cur_node.children)
+		    {
+			if(!child.visited)
 			{
-				if(!child.visited)
-				{
-					queue.add(child);
-					child.visited = true;
-				}
+				queue.add(child);
+				child.visited = true;
 			}
+		    }
 		}
-	}
+		
+		return order;
+	    }
+	    
+	    /*
+	     * Same as above but you can specify a starting point.
+	     */
+	    public ArrayList<Node> BFSTraversal(ArrayList<Node> graph, int start)
+	    {
+		ArrayList<Node> order = new ArrayList<Node>();
+		ArrayList<Node> queue = new ArrayList<Node>();
+
+		queue.add(graph.get(start));
+		queue.get(0).visited = true; // so that we don't visit it again
+		while(!queue.isEmpty())
+		{
+		    Node cur_node = queue.remove(0);
+		    order.add(cur_node);
+		    
+		    for(Node child : cur_node.children)
+		    {
+			if(!child.visited)
+			{
+				queue.add(child);
+				child.visited = true;
+			}
+		    }
+		}
+		
+		return order;
+	    }
 
 	public static class Node
 	{
