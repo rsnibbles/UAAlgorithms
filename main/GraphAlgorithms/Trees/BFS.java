@@ -4,39 +4,19 @@ import java.util.*;
 public class BFS
 {
 	/*
-	     * given the an array of nodes, will traverse the entire tree in a breadth
-	     * first search, starting from the node at graph.get(0)
-	     */
-	    public ArrayList<Node> BFSTraversal(ArrayList<Node> graph)
-	    {
-		ArrayList<Node> order = new ArrayList<Node>();
-		ArrayList<Node> queue = new ArrayList<Node>();
+	 * given the an array of nodes, will traverse the entire tree in a breadth
+	 * first search, starting from the node at graph.get(0)
+	 */
+	public ArrayList<Node> BFSTraversal(ArrayList<Node> graph)
+	{
+		return this.BFSTraversal(graph, 0);
+	}
 
-		queue.add(graph.get(0));
-		queue.get(0).visited = true; // so that we don't visit it again
-		while(!queue.isEmpty())
-		{
-		    Node cur_node = queue.remove(0);
-		    order.add(cur_node);
-		    
-		    for(Node child : cur_node.children)
-		    {
-			if(!child.visited)
-			{
-				queue.add(child);
-				child.visited = true;
-			}
-		    }
-		}
-		
-		return order;
-	    }
-	    
-	    /*
-	     * Same as above but you can specify a starting point.
-	     */
-	    public ArrayList<Node> BFSTraversal(ArrayList<Node> graph, int start)
-	    {
+	/*
+	 * Same as above but you can specify a starting point.
+	 */
+	public ArrayList<Node> BFSTraversal(ArrayList<Node> graph, int start)
+	{
 		ArrayList<Node> order = new ArrayList<Node>();
 		ArrayList<Node> queue = new ArrayList<Node>();
 
@@ -44,21 +24,20 @@ public class BFS
 		queue.get(0).visited = true; // so that we don't visit it again
 		while(!queue.isEmpty())
 		{
-		    Node cur_node = queue.remove(0);
-		    order.add(cur_node);
-		    
-		    for(Node child : cur_node.children)
-		    {
-			if(!child.visited)
+			Node cur_node = queue.remove(0);
+			order.add(cur_node);
+
+			for(Node child : cur_node.children)
 			{
-				queue.add(child);
-				child.visited = true;
+				if(!child.visited)
+				{
+					queue.add(child);
+					child.visited = true;
+				}
 			}
-		    }
 		}
-		
 		return order;
-	    }
+	}
 
 	public static class Node
 	{
