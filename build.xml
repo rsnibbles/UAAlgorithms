@@ -1,4 +1,4 @@
-<!-- generated: Thu Aug  9 11:39:37 EDT 2012 by genbuild.sh @83d6f1a4d77ce1437b0a069548b9ae388f495165 -->
+<!-- generated: Thu Aug  9 17:07:26 EDT 2012 by genbuild.sh @37865237a72d3cd7d5a2d24e04a2113e32e0f0ea -->
 <project name="UAAlgorithms" default="all" >
 	<target name="clean">
 		<delete dir="target" verbose="true" includeemptydirs="true" />
@@ -168,7 +168,7 @@
 
 	<target name="TestMountainClimbing"
 		depends="DynamicProgramming/TestMountainClimbing.java" />
-	<target name="DynamicProgramming/TestMountainClimbing.java" >
+	<target name="DynamicProgramming/TestMountainClimbing.java" depends="DynamicProgramming/MountainClimbing.java" >
 		<mkdir dir="target/" />
 		<javac includeantruntime="false" srcdir="test/DynamicProgramming/" destdir="target/" includes="TestMountainClimbing.java" />
 	</target>

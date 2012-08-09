@@ -56,7 +56,7 @@ function gen_target() { # {{{
 
 		echo -ne "\t<target name=\"$1\""
 
-		deps="$(sed -nre 's/^import (main|test)\.(.+);$/\2/p' "$2$1" | sort -u | \
+		deps="$(sed -nre 's/^import (main|test)\.(.+);.*/\2/p' "$2$1" | sort -u | \
 			tr '.' '/' | sed 's/$/.java/' | tr '\n' ',' | sed 's/,$//' )"
 		if [[ -n $deps ]]; then
 			echo -ne " depends=\"$deps\""
