@@ -1,4 +1,4 @@
-<!-- generated: Tue Aug  7 20:08:31 EDT 2012 by genbuild.sh @79a76f5400398f37c04a6a1b75ee0a5fd8ef09cb -->
+<!-- generated: Thu Aug  9 11:39:37 EDT 2012 by genbuild.sh @83d6f1a4d77ce1437b0a069548b9ae388f495165 -->
 <project name="UAAlgorithms" default="all" >
 	<target name="clean">
 		<delete dir="target" verbose="true" includeemptydirs="true" />
@@ -40,7 +40,24 @@
 	</target>
 
 	<target name="GraphAlgorithms" 
-		depends="GraphAlgorithms/MST,GraphAlgorithms/PathFinding,GraphAlgorithms/Trees" />
+		depends="GraphAlgorithms/ConvexHull,GraphAlgorithms/MST,GraphAlgorithms/PathFinding,GraphAlgorithms/Trees" />
+
+	<target name="GraphAlgorithms/ConvexHull" 
+		depends="Graham,jarvis" />
+
+	<target name="Graham"
+		depends="GraphAlgorithms/ConvexHull/Graham.java" />
+	<target name="GraphAlgorithms/ConvexHull/Graham.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="main/GraphAlgorithms/ConvexHull/" destdir="target/" includes="Graham.java" />
+	</target>
+
+	<target name="jarvis"
+		depends="GraphAlgorithms/ConvexHull/jarvis.java" />
+	<target name="GraphAlgorithms/ConvexHull/jarvis.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="main/GraphAlgorithms/ConvexHull/" destdir="target/" includes="jarvis.java" />
+	</target>
 
 	<target name="GraphAlgorithms/MST" 
 		depends="Kruskals,Prims" />
@@ -60,7 +77,14 @@
 	</target>
 
 	<target name="GraphAlgorithms/PathFinding" 
-		depends="Floyds" />
+		depends="Bellford,Floyds" />
+
+	<target name="Bellford"
+		depends="GraphAlgorithms/PathFinding/Bellford.java" />
+	<target name="GraphAlgorithms/PathFinding/Bellford.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="main/GraphAlgorithms/PathFinding/" destdir="target/" includes="Bellford.java" />
+	</target>
 
 	<target name="Floyds"
 		depends="GraphAlgorithms/PathFinding/Floyds.java" />
@@ -144,7 +168,7 @@
 
 	<target name="TestMountainClimbing"
 		depends="DynamicProgramming/TestMountainClimbing.java" />
-	<target name="DynamicProgramming/TestMountainClimbing.java" depends="DynamicProgramming/MountainClimbing.java" >
+	<target name="DynamicProgramming/TestMountainClimbing.java" >
 		<mkdir dir="target/" />
 		<javac includeantruntime="false" srcdir="test/DynamicProgramming/" destdir="target/" includes="TestMountainClimbing.java" />
 	</target>

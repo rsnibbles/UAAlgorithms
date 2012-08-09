@@ -1,7 +1,7 @@
 import java.util.*;
 import java.awt.geom.*;
 
-public class graham{
+public class Graham {
 
 	public double ccw(point a,point b, point c)
 	{
