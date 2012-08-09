@@ -7,6 +7,7 @@ public class TestMountainClimbing
 	public static boolean success = true;
 	public static void main(String[] args)
 	{
+		MountainClimbing MC = new MountainClimbing();
 		testOne(true);
 		if(!success)
 		{
@@ -50,7 +51,7 @@ public class TestMountainClimbing
 								{0,0,0,10,0},
 								{0,0,0,10,0}};
 		
-		long result = climbing(test_array);
+		long result = MC.climbing(test_array);
 		
 		if(result != 40)
 		{
@@ -69,7 +70,7 @@ public class TestMountainClimbing
 								{0,0,10,0},
 								{0,0,0,10}};
 
-		long result = climbing(test_array);
+		long result = MC.climbing(test_array);
 
 		if(result != 40)
 		{
@@ -89,7 +90,7 @@ public class TestMountainClimbing
 								{0,10,0,0},
 								{10,0,0,0}};
 
-		long result = climbing(test_array);
+		long result = MC.climbing(test_array);
 		
 		if(result != 40)
 		{
@@ -109,7 +110,7 @@ public class TestMountainClimbing
 								{5,0,0,5},
 								{5,0,0,30}};
 		
-		long result = climbing(test_array);
+		long result = MC.climbing(test_array);
 		
 		if(result != 40)
 		{
@@ -129,7 +130,7 @@ public class TestMountainClimbing
 								{5,0,0,5},
 								{5,0,0,0}};
 		
-		long result = climbing(test_array);
+		long result = MC.climbing(test_array);
 		
 		if(result != 40)
 		{
