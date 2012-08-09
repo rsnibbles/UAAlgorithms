@@ -3,54 +3,72 @@ import java.util.*;
 
 public class MountainClimbing
 {
-	// takes a 2d array of longs, will return the largest possible path traveling up the mountain
-	// when you can move up, up-right, and up-left, the mountain is expected to be a rectangle
-	// the last array is assumed to be the top of the mountain
-	// all value of the are assumed to be positive, however the algorithm can be easily adapted to accomodate negatives
-	public long climbing(long[][] mountain)
-	{
-		int height = mountain.length;
-		int width = mountain[0].length;
+    /*
+     * takes a 2d array of longs, will return the largest possible path traveling up the mountain
+     * when you can move up, up-right, and up-left, the mountain is expected to be a rectangle
+     * the last array is assumed to be the top of the mountain
+     * all value of the are assumed to be positive, however the algorithm can be easily adapted to accomodate negatives 
+    */
+    public long climbing(long[][] mountain)
+    {
+	    int height = mountain.length;
+	    int width = mountain[0].length;
 
-		long[] cur_best = mountain[height-1];
+	    // Create a blank path array
+	    long[][] path = new long[height][width];
 
-		long down = 0;
-		long down_left = 0;
-		long down_right = 0;
-		for (int h = 1; h < height; h++)
-		{
-			long[] new_best = mountain[h];
-			for (int w = 0; w < width; w++)
-			{
-				down = cur_best[w];
-				down_right = (w < width-2) ? cur_best[w+1] : 0;
-				down_left = (w > 0) ? cur_best[w-1] : 0;
-
-				if (down > down_left && down > down_right)
-				{
-					new_best[w] += down;
-				}
-				else if (down_left > down_right)
-				{
-					new_best[w] += down_left;
-				}
-				else
-				{
-					new_best[w] += down_right;
-				}
-			}
-			cur_best = new_best;
+	    // Copy the mountain over
+	    for (int i = 0; i < height; ++i) {
+		for (int j = 0; j < width; ++j) {
+		    path[i][j] = mountain [i][j];
 		}
+	    }
 
-		long max = 0;
-		for (int i = 0; i < width; i++)
-		{
-			if (cur_best[i] > max)
-			{
-				max = cur_best[i];
-			}
+	    for (int i = 1; i < height; ++i) {
+		for (int j = 0; j < width; ++j) {
+		    long upLeft = j - 1 >= 0 ? path[i - 1][j - 1] : 0;
+		    long up = path[i - 1][j];
+		    long upRight = j + 1 < width ? path[i - 1][j + 1] : 0;
+
+		    path[i][j] += Math.max(upLeft, Math.max(up, upRight));
 		}
+	    }
 
-		return max;
-	}
+	    long max = 0;
+
+	    for (int i = 0; i < width; ++i) {
+		max = Math.max(max, path[height - 1][i]);
+	    }
+
+	    return max;
+    }
+
+    /*
+     * The difference between this function and the one above is that the
+     * original mountain is overwritten. This makes it faster, but bad to
+     * do in certain situations
+     */
+    public long climbingDirty(long[][] mountain)
+    {
+	    int height = mountain.length;
+	    int width = mountain[0].length;
+
+	    for (int i = 1; i < height; ++i) {
+		for (int j = 0; j < width; ++j) {
+		    long upLeft = j - 1 >= 0 ? mountain[i - 1][j - 1] : 0;
+		    long up = mountain[i - 1][j];
+		    long upRight = j + 1 < width ? mountain[i - 1][j + 1] : 0;
+
+		    mountain[i][j] += Math.max(upLeft, Math.max(up, upRight));
+		}
+	    }
+
+	    long max = 0;
+
+	    for (int i = 0; i < width; ++i) {
+		max = Math.max(max, mountain[height - 1][i]);
+	    }
+
+	    return max;
+    }
 }

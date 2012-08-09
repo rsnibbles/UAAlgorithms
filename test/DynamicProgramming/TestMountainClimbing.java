@@ -8,59 +8,94 @@ public class TestMountainClimbing
 	public static boolean success = true;
 	public static void main(String[] args)
 	{
-		testOne(true);
-		if(!success)
-		{
-			System.out.println("FAILED: TestMountainClimbing");
-			System.exit(1);
-		}
-		testTwo(true);
-		if(!success)
-		{
-			System.out.println("FAILED: TestMountainClimbing");
-			System.exit(1);
-		}
-		testThree(true);
-		if(!success)
-		{
-			System.out.println("FAILED: TestMountainClimbing");
-			System.exit(1);
-		}
-		testFour(true);
-		if(!success)
-		{
-			System.out.println("FAILED: TestMountainClimbing");
-			System.exit(1);
-		}
-		testFive(true);
-		if(!success)
-		{
-			System.out.println("FAILED: TestMountainClimbing");
-			System.exit(1);
-		}
-		else
-		{
-			System.exit(0);
-		}
+	    
+	    testZero(true);
+	    if(!success)
+	    {
+		    System.out.println("FAILED: TestMountainClimbing 0");
+		    System.exit(1);
+	    }
+	    
+	    testOne(true);
+	    if(!success)
+	    {
+		    System.out.println("FAILED: TestMountainClimbing 1");
+		    System.exit(1);
+	    }
+	    
+	    testTwo(true);
+	    if(!success)
+	    {
+		    System.out.println("FAILED: TestMountainClimbing 2");
+		    System.exit(1);
+	    }
+	    
+	    testThree(true);
+	    if(!success)
+	    {
+		    System.out.println("FAILED: TestMountainClimbing 3");
+		    System.exit(1);
+	    }
+	    
+	    testFour(true);
+	    if(!success)
+	    {
+		    System.out.println("FAILED: TestMountainClimbing 4");
+		    System.exit(1);
+	    }
+	    
+	    testFive(true);
+	    if(!success)
+	    {
+		    System.out.println("FAILED: TestMountainClimbing 5");
+		    System.exit(1);
+	    }
+	    
+	    System.exit(0);
 	}
 
+	public static void testZero(boolean printDebug)
+	{
+		long[][] test_array = {{10,0,},
+					{10,0},
+					{10,0},
+					{10,0}};
+
+		long result = MC.climbing(test_array);
+
+		if(result != 40)
+		{
+			success = false;
+		}
+		
+		result = MC.climbingDirty(test_array);
+
+		if(result != 40)
+		{
+			success = false;
+		}
+	}
+	
 	public static void testOne(boolean printDebug)
 	{
 		long[][] test_array = {{0,0,0,10,0},
 								{0,0,0,10,0},
 								{0,0,0,10,0},
 								{0,0,0,10,0}};
-		
+
 		long result = MC.climbing(test_array);
-		
+
 		if(result != 40)
 		{
 			success = false;
 			return;
 		}
-		else
+		
+		result = MC.climbingDirty(test_array);
+
+		if(result != 40)
 		{
-			return;
+			success = false;
 		}
 	}
 	public static void testTwo(boolean printDebug)
@@ -77,12 +112,15 @@ public class TestMountainClimbing
 			success = false;
 			return;
 		}
-		else
+		
+		result = MC.climbingDirty(test_array);
+
+		if(result != 40)
 		{
-			return;
+			success = false;
 		}
 	}
-	
+
 	public static void testThree(boolean printDebug)
 	{
 		long[][] test_array = {{0,0,0,10},
@@ -91,55 +129,64 @@ public class TestMountainClimbing
 								{10,0,0,0}};
 
 		long result = MC.climbing(test_array);
-		
+
 		if(result != 40)
 		{
 			success = false;
 			return;
 		}
-		else
+		
+		result = MC.climbingDirty(test_array);
+
+		if(result != 40)
 		{
-			return;
+			success = false;
 		}
 	}
-	
+
 	public static void testFour(boolean printDebug)
 	{
 		long[][] test_array = {{5,0,0,0},
 								{5,0,0,5},
 								{5,0,0,5},
 								{5,0,0,30}};
-		
+
 		long result = MC.climbing(test_array);
-		
+
 		if(result != 40)
 		{
 			success = false;
 			return;
 		}
-		else
+		
+		result = MC.climbingDirty(test_array);
+
+		if(result != 40)
 		{
-			return;
+			success = false;
 		}
 	}
-	
+
 	public static void testFive(boolean printDebug)
 	{
 		long[][] test_array = {{5,0,0,30},
 								{5,0,0,5},
 								{5,0,0,5},
 								{5,0,0,0}};
-		
+
 		long result = MC.climbing(test_array);
-		
+
 		if(result != 40)
 		{
 			success = false;
 			return;
 		}
-		else
+		
+		result = MC.climbingDirty(test_array);
+
+		if(result != 40)
 		{
-			return;
+			success = false;
 		}
 	}
 }
