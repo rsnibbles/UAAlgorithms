@@ -30,11 +30,13 @@ public class DFS
 	{
 		public ArrayList<Node> children;
 		public boolean visited = false;
+		public String name = "(no name)";
 
 		public Node(ArrayList<Node> childs)
 		{
 			this.children = new ArrayList<Node>(childs);
 			this.visited = false;
+			this.name = "(no name)";
 		}
 	}
 }
