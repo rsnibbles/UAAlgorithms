@@ -72,7 +72,7 @@ public class TestDFS
 			}
 		}
 		
-		sucess = tempBool1 || tempBool2;
+		success = tempBool1 || tempBool2;
 	}
 
 	public static void testTwo(boolean printDebug)
@@ -128,6 +128,6 @@ public class TestDFS
 			}
 		}
 		
-		sucess = tempBool1 || tempBool2;
+		success = tempBool1 || tempBool2;
 	}
 }
