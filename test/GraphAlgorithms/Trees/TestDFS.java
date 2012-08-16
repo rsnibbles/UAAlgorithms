@@ -30,42 +30,46 @@ public class TestDFS
 		}
 
 		ArrayList<DFS.Node> graph = new ArrayList<DFS.Node>();
-		tree[0].children.add(tree[1]);
-		tree[0].children.add(tree[2]);
+		tree[0].children.add(tree[1]); //A childs B
+		tree[0].children.add(tree[2]); //A childs C
 
-		tree[1].children.add(tree[0]);
-		tree[1].children.add(tree[3]);
-		tree[1].children.add(tree[4]);
+		tree[1].children.add(tree[0]); //B looks at A
+		tree[1].children.add(tree[3]); //B childs D
+		tree[1].children.add(tree[4]); //B childs E
 
-		tree[2].children.add(tree[0]);
-		tree[2].children.add(tree[5]);
-		tree[2].children.add(tree[6]);
+		tree[2].children.add(tree[0]); //C childs F
+		tree[2].children.add(tree[5]); //C childs G
+		tree[2].children.add(tree[6]); //C looks at A
 
-		tree[3].children.add(tree[1]);
+		tree[3].children.add(tree[1]); //D looks at B
 
-		tree[4].children.add(tree[1]);
+		tree[4].children.add(tree[1]); //E looks at B
 
-		tree[5].children.add(tree[2]);
+		tree[5].children.add(tree[2]); //F looks at C
 
-		tree[6].children.add(tree[2]);
+		tree[6].children.add(tree[2]); //E looks at E
 
 		for(DFS.Node node : tree)
 			graph.add(node);
 
 		DFS dfs = new DFS();
 		ArrayList<DFS.Node> traversal = dfs.DFS(graph);
+		
+		String[] answer1 = { "A", "B", "D", "E", "C", "F", "G" };
+		String[] answer2 = { "A", "C", "G", "F", "B", "E", "D" };
 
-		for (int i = 0; i < traversal.size(); ++i) {
-			if(!traversal.get(i).name.equals(Character.toString((char)('A' + i)))) {
+		for(int i = 0; i < answer.length; ++i) {
+			if (!answer1[i].equals(traversal.get(i).name)) {
 				success = false;
 				return;
 			}
 		}
-
-		traversal = dfs.DFS(graph, 6);
-		if (traversal.size() > 1 || !traversal.get(0).name.equals("G")) {
-			success = false;
-			return;
+		
+		for(int i = 0; i < answer.length; ++i) {
+			if (!answer2[i].equals(traversal.get(i).name)) {
+				success = false;
+				return;
+			}
 		}
 	}
 
@@ -80,24 +84,24 @@ public class TestDFS
 		}
 
 		ArrayList<DFS.Node> graph = new ArrayList<DFS.Node>();
-		tree[0].children.add(tree[1]);
-		tree[0].children.add(tree[2]);
+		tree[0].children.add(tree[1]); //A childs B
+		tree[0].children.add(tree[2]); //A childs C
 
-		tree[1].children.add(tree[0]);
-		tree[1].children.add(tree[3]);
-		tree[1].children.add(tree[4]);
+		tree[1].children.add(tree[0]); //B looks at A
+		tree[1].children.add(tree[3]); //B childs D
+		tree[1].children.add(tree[4]); //B childs E
 
-		tree[2].children.add(tree[0]);
-		tree[2].children.add(tree[5]);
-		tree[2].children.add(tree[6]);
+		tree[2].children.add(tree[0]); //C childs F
+		tree[2].children.add(tree[5]); //C childs G
+		tree[2].children.add(tree[6]); //C looks at A
 
-		tree[3].children.add(tree[1]);
+		tree[3].children.add(tree[1]); //D looks at B
 
-		tree[4].children.add(tree[1]);
+		tree[4].children.add(tree[1]); //E looks at B
 
-		tree[5].children.add(tree[2]);
+		tree[5].children.add(tree[2]); //F looks at C
 
-		tree[6].children.add(tree[2]);
+		tree[6].children.add(tree[2]); //G looks at C
 
 		for(DFS.Node node : tree)
 			graph.add(node);
@@ -105,15 +109,21 @@ public class TestDFS
 		DFS dfs = new DFS();
 		ArrayList<DFS.Node> traversal = dfs.DFS(graph, 6);
 
-		String[] answer = { "G", "C", "A", "F", "B", "D", "E" };
-
+		String[] answer1 = { "G", "C", "F", "A", "B", "D", "E" };
+		String[] answer2 = { "G", "C", "A", "B", "E", "D", "F" };
+		
 		for(int i = 0; i < answer.length; ++i) {
-			if (!answer[i].equals(traversal.get(i).name)) {
+			if (!answer1[i].equals(traversal.get(i).name)) {
 				success = false;
 				return;
 			}
 		}
-
-		success = true;
+		
+		for(int i = 0; i < answer.length; ++i) {
+			if (!answer2[i].equals(traversal.get(i).name)) {
+				success = false;
+				return;
+			}
+		}
 	}
 }
