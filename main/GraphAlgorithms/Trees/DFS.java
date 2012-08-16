@@ -62,6 +62,13 @@ public class DFS
 		public ArrayList<Node> children;
 		public boolean visited = false;
 		public String name = "(no name)";
+		
+		public Node()
+		{
+			this.children = new ArrayList<Node>();
+			this.visited = false;
+			this.name = "(no name)";
+		}
 
 		public Node(ArrayList<Node> childs)
 		{
