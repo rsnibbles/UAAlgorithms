@@ -55,7 +55,8 @@ public class TestBFS
 
 		BFS bfs = new BFS();
 		ArrayList<BFS.Node> traversal = bfs.BFSTraversal(graph);
-
+		
+		// Traversal of graph is expected to be in alphabetical order
 		for (int i = 0; i < traversal.size(); ++i) {
 			if(!traversal.get(i).name.equals(Character.toString((char)('A' + i)))) {
 				success = false;
@@ -63,6 +64,7 @@ public class TestBFS
 			}
 		}
 
+		// We're traversing the graph again and nodes are still visited so we only get one
 		traversal = bfs.BFSTraversal(graph, 6);
 		if (traversal.size() > 1 || !traversal.get(0).name.equals("G")) {
 			success = false;
