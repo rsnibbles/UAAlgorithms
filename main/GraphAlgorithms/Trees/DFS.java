@@ -27,6 +27,7 @@ public class DFS
 			}
 			path.add(cur_node);
 		}
+		return path;
 	}
 	
 	//arrrrr
@@ -53,6 +54,7 @@ public class DFS
 			}
 			path.add(cur_node);
 		}
+		return path;
 	}
 
 	public static class Node
