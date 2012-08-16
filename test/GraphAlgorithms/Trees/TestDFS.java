@@ -58,19 +58,21 @@ public class TestDFS
 		String[] answer1 = { "A", "B", "D", "E", "C", "F", "G" };
 		String[] answer2 = { "A", "C", "G", "F", "B", "E", "D" };
 
+		boolean tempBool1 = true;
+		boolean tempBool2 = true;
 		for(int i = 0; i < answer1.length; ++i) {
 			if (!answer1[i].equals(traversal.get(i).name)) {
-				success = false;
-				return;
+				tempBool1 = false;
 			}
 		}
 		
 		for(int i = 0; i < answer2.length; ++i) {
 			if (!answer2[i].equals(traversal.get(i).name)) {
-				success = false;
-				return;
+				tempBool1 = false;
 			}
 		}
+		
+		sucess = tempBool1 || tempBool2;
 	}
 
 	public static void testTwo(boolean printDebug)
@@ -112,18 +114,20 @@ public class TestDFS
 		String[] answer1 = { "G", "C", "F", "A", "B", "D", "E" };
 		String[] answer2 = { "G", "C", "A", "B", "E", "D", "F" };
 		
+		boolean tempBool1 = true;
+		boolean tempBool2 = true;
 		for(int i = 0; i < answer1.length; ++i) {
 			if (!answer1[i].equals(traversal.get(i).name)) {
-				success = false;
-				return;
+				tempBool1 = false;
 			}
 		}
 		
 		for(int i = 0; i < answer2.length; ++i) {
 			if (!answer2[i].equals(traversal.get(i).name)) {
-				success = false;
-				return;
+				tempBool2 = false;
 			}
 		}
+		
+		sucess = tempBool1 || tempBool2;
 	}
 }
