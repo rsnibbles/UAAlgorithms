@@ -21,8 +21,8 @@ public class TestPrims
 		
 		Prims algorithm = new Prims();
 		
-		ArrayList<Prims.Node> problemSet = buildTestGraph();
-		ArrayList<Prims.Node> answer = algorithm.runPrim(buildGraph());
+		//ArrayList<Prims.Node> problemSet = buildTestGraph();
+		//ArrayList<Prims.Node> answer = algorithm.runPrim(buildGraph());
 		
 	}
 	
@@ -70,5 +70,6 @@ public class TestPrims
 		return graph;	
 	}
 	
-	private static ArrayList<Prims.Node> buildGraphs() {
+	//private static ArrayList<Prims.Node> buildGraphs() {
+	//}
 }

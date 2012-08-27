@@ -1,4 +1,4 @@
-<!-- generated: Thu Aug  9 17:07:26 EDT 2012 by genbuild.sh @37865237a72d3cd7d5a2d24e04a2113e32e0f0ea -->
+<!-- generated: Mon Aug 27 17:19:26 EDT 2012 by genbuild.sh @3e64e4e60690b5c421bdf176c40d30ce8601f0d6 -->
 <project name="UAAlgorithms" default="all" >
 	<target name="clean">
 		<delete dir="target" verbose="true" includeemptydirs="true" />
@@ -43,20 +43,20 @@
 		depends="GraphAlgorithms/ConvexHull,GraphAlgorithms/MST,GraphAlgorithms/PathFinding,GraphAlgorithms/Trees" />
 
 	<target name="GraphAlgorithms/ConvexHull" 
-		depends="Graham,jarvis" />
+		depends="GrahamScan,JarvisMarch" />
 
-	<target name="Graham"
-		depends="GraphAlgorithms/ConvexHull/Graham.java" />
-	<target name="GraphAlgorithms/ConvexHull/Graham.java" >
+	<target name="GrahamScan"
+		depends="GraphAlgorithms/ConvexHull/GrahamScan.java" />
+	<target name="GraphAlgorithms/ConvexHull/GrahamScan.java" >
 		<mkdir dir="target/" />
-		<javac includeantruntime="false" srcdir="main/GraphAlgorithms/ConvexHull/" destdir="target/" includes="Graham.java" />
+		<javac includeantruntime="false" srcdir="main/GraphAlgorithms/ConvexHull/" destdir="target/" includes="GrahamScan.java" />
 	</target>
 
-	<target name="jarvis"
-		depends="GraphAlgorithms/ConvexHull/jarvis.java" />
-	<target name="GraphAlgorithms/ConvexHull/jarvis.java" >
+	<target name="JarvisMarch"
+		depends="GraphAlgorithms/ConvexHull/JarvisMarch.java" />
+	<target name="GraphAlgorithms/ConvexHull/JarvisMarch.java" >
 		<mkdir dir="target/" />
-		<javac includeantruntime="false" srcdir="main/GraphAlgorithms/ConvexHull/" destdir="target/" includes="jarvis.java" />
+		<javac includeantruntime="false" srcdir="main/GraphAlgorithms/ConvexHull/" destdir="target/" includes="JarvisMarch.java" />
 	</target>
 
 	<target name="GraphAlgorithms/MST" 
@@ -77,13 +77,13 @@
 	</target>
 
 	<target name="GraphAlgorithms/PathFinding" 
-		depends="Bellford,Floyds" />
+		depends="BellmanFord,Floyds" />
 
-	<target name="Bellford"
-		depends="GraphAlgorithms/PathFinding/Bellford.java" />
-	<target name="GraphAlgorithms/PathFinding/Bellford.java" >
+	<target name="BellmanFord"
+		depends="GraphAlgorithms/PathFinding/BellmanFord.java" />
+	<target name="GraphAlgorithms/PathFinding/BellmanFord.java" >
 		<mkdir dir="target/" />
-		<javac includeantruntime="false" srcdir="main/GraphAlgorithms/PathFinding/" destdir="target/" includes="Bellford.java" />
+		<javac includeantruntime="false" srcdir="main/GraphAlgorithms/PathFinding/" destdir="target/" includes="BellmanFord.java" />
 	</target>
 
 	<target name="Floyds"
@@ -174,7 +174,24 @@
 	</target>
 
 	<target name="TestGraphAlgorithms" 
-		depends="TestGraphAlgorithms/MST,TestGraphAlgorithms/PathFinding,TestGraphAlgorithms/Trees,GraphAlgorithms" />
+		depends="TestGraphAlgorithms/ConvexHull,TestGraphAlgorithms/MST,TestGraphAlgorithms/PathFinding,TestGraphAlgorithms/Trees,GraphAlgorithms" />
+
+	<target name="TestGraphAlgorithms/ConvexHull" 
+		depends="TestGrahamScan,TestJarvisMarch,GraphAlgorithms/ConvexHull" />
+
+	<target name="TestGrahamScan"
+		depends="GraphAlgorithms/ConvexHull/TestGrahamScan.java" />
+	<target name="GraphAlgorithms/ConvexHull/TestGrahamScan.java" depends="GraphAlgorithms/ConvexHull/GrahamScan.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/GraphAlgorithms/ConvexHull/" destdir="target/" includes="TestGrahamScan.java" />
+	</target>
+
+	<target name="TestJarvisMarch"
+		depends="GraphAlgorithms/ConvexHull/TestJarvisMarch.java" />
+	<target name="GraphAlgorithms/ConvexHull/TestJarvisMarch.java" depends="GraphAlgorithms/ConvexHull/JarvisMarch.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/GraphAlgorithms/ConvexHull/" destdir="target/" includes="TestJarvisMarch.java" />
+	</target>
 
 	<target name="TestGraphAlgorithms/MST" 
 		depends="TestKruskals,TestPrims,GraphAlgorithms/MST" />
@@ -194,7 +211,14 @@
 	</target>
 
 	<target name="TestGraphAlgorithms/PathFinding" 
-		depends="TestFloyds,GraphAlgorithms/PathFinding" />
+		depends="TestBellmanFord,TestFloyds,GraphAlgorithms/PathFinding" />
+
+	<target name="TestBellmanFord"
+		depends="GraphAlgorithms/PathFinding/TestBellmanFord.java" />
+	<target name="GraphAlgorithms/PathFinding/TestBellmanFord.java" depends="GraphAlgorithms/PathFinding/BellmanFord.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/GraphAlgorithms/PathFinding/" destdir="target/" includes="TestBellmanFord.java" />
+	</target>
 
 	<target name="TestFloyds"
 		depends="GraphAlgorithms/PathFinding/TestFloyds.java" />

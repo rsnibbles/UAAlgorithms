@@ -1,7 +1,9 @@
+package main.GraphAlgorithms.ConvexHull;
+
 import java.util.*;
 import java.awt.geom.*;
 
-public class Graham {
+public class GrahamScan {
 
 	public double ccw(point a,point b, point c)
 	{

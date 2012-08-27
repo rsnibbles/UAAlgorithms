@@ -1,12 +1,10 @@
+package main.GraphAlgorithms.PathFinding;
 import java.util.*;
 
-public class Bellford
-{
+public class BellmanFord {
 
-	public ArrayList<Node> doBellford(ArrayList<Node> nodes, ArrayList<Edge> edges, Node source)
-	{
-		for(Node n: nodes)
-		{
+	public ArrayList<Node> doBellford(ArrayList<Node> nodes, ArrayList<Edge> edges, Node source) {
+		for(Node n: nodes) {
 			if( n == source )
 				n.distance = 0;
 			else
@@ -14,22 +12,18 @@ public class Bellford
 			n.predecessor = null;
 		}
 		
-		for(int i = 1; i < nodes.size(); i++)
-		{
-			for(Edge e: edges)
-			{
+		for(int i = 1; i < nodes.size(); i++) {
+			for(Edge e: edges) {
 				Node s = e.source;
 				Node d = e.destination;
-				if( s.distance + e.weight < d.distance )
-				{
+				if(s.distance + e.weight < d.distance) {
 					d.distance = s.distance + e.weight;
 					d.predecessor = s;
 				}
 			}
 		}
 		
-		for(Edge e: edges)
-		{
+		for(Edge e: edges) {
 			Node s = e.source;
 			Node d = e.destination;
 			if(s.distance + e.weight < d.distance)
@@ -39,24 +33,20 @@ public class Bellford
 		return nodes;
 	}
 	
-	public class Node
-	{
+	public class Node {
 		Node predecessor = null;
 		int distance;
 		
-		public Node()
-		{
+		public Node() {
 			distance = 0;
 		}
 	}
 
-	public class Edge
-	{
+	public class Edge {
 		Node source, destination;
 		int weight;
 		
-		public Edge(Node s, Node d, int w)
-		{
+		public Edge(Node s, Node d, int w) {
 			source = s;
 			destination = d;
 			weight = w;
