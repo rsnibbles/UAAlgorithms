@@ -21,32 +21,71 @@ public class LongestCommonSubstring {
 		// fill the table
 		for (int i = 1; i < rows; ++i) {
 			for (int j = 1; j < cols; ++j) {
-			
 				// get the max of the left value and the above value
 				int left = ar[i][j - 1];
 				int above = ar[i - 1][j];
 				int max = Math.max(left, above);
 				
 				// if it's a match, consider the diagonal
-				if (s1.charAt(j - 1) == s2.charAt(i - 1))
+				if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
 					max = Math.max(ar[i - 1][j - 1] + 1, max);
+				}
 					
-				// store the max
+				// store the max	
 				ar[i][j] = max;
-				
-				System.out.print("s1: " + s1.charAt(j - 1));
-				System.out.print(" s2: " + s2.charAt(i - 1));
-				System.out.print(" value: " + ar[i][j]);
-				System.out.println();
 			}
-			
-			System.out.println();
 		}
 		
-		// output the max value
-		System.out.println(ar[rows - 1][cols - 1]);
+		// construct the substring
+		StringBuilder sb = new StringBuilder();
 		
-		return "";
+		int s1Len = s1.length();
+		int s2Len = s2.length();
+		while (s1Len > 1 || s2Len > 1) {
+			int curVal = ar[s1Len][s2Len];
+			
+			if (curVal == ar[s1Len - 1][s2Len]) {
+				--s1Len;
+			}
+			else if (curVal == ar[s1Len][s2Len - 1]) {
+				--s2Len;
+			}
+			else {
+				sb.append(s1.charAt(s1Len - 1));
+				--s1Len;
+				--s2Len;
+			}
+		}
+		
+		return sb.reverse().toString();
+	}
+	
+	public static int longestCommonSubstringValue(String s1, String s2) {
+	
+		// create a table with s1 as the top and s2 as the left
+		int rows = s1.length() + 1;
+		int cols = s2.length() + 1;
+		int[][] ar = new int[rows][cols];
+		
+		// fill the table
+		for (int i = 1; i < rows; ++i) {
+			for (int j = 1; j < cols; ++j) {
+				// get the max of the left value and the above value
+				int left = ar[i][j - 1];
+				int above = ar[i - 1][j];
+				int max = Math.max(left, above);
+				
+				// if it's a match, consider the diagonal
+				if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
+					max = Math.max(ar[i - 1][j - 1] + 1, max);
+				}
+					
+				// store the max	
+				ar[i][j] = max;
+			}
+		}
+		
+		return ar[rows - 1][cols - 1];
 	}
 
 }
