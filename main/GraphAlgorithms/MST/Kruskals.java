@@ -4,7 +4,7 @@ import java.util.*;
 public class Kruskals {
 
 	// performs Kruskal's MST algorithm with a list of nodes in the starting graph and list of connections
-	public void doKruskals(ArrayList<Node> nodes, ArrayList<Connection> connections){
+	public ArrayList<Connection> doKruskals(ArrayList<Node> nodes, ArrayList<Connection> connections){
 
 		// sort the connections to perform the algorithm
 		Collections.sort(connections);
@@ -15,10 +15,12 @@ public class Kruskals {
 		// make each node its own tree to begin with
 		for(int i = 0; i < nodes.size(); ++i)
 		{
-			ArrayList<Node> tree = forest.get(i);
-			tree = new ArrayList<Node>();
+			ArrayList<Node> tree = new ArrayList<Node>();
 			tree.add(nodes.get(i));
+			forest.add(tree);
 		}
+		
+		ArrayList<Connection> answer = new ArrayList<Connection>();
 		
 		// add all valid connections
 		for(int i = 0; i < connections.size(); i++){
@@ -36,6 +38,8 @@ public class Kruskals {
 				}
 				else
 				{
+					
+					
 					if(currentList.contains(current.a))
 					{
 						for(int k = j + 1; k < forest.size(); ++k)
@@ -49,6 +53,7 @@ public class Kruskals {
 								
 								current.a.neighbor.add(current.b);
 								current.b.neighbor.add(current.a);
+								answer.add(current);
 								
 								break;
 							}
@@ -67,6 +72,7 @@ public class Kruskals {
 								
 								current.a.neighbor.add(current.b);
 								current.b.neighbor.add(current.a);
+								answer.add(current);
 								
 								break;
 							}
@@ -75,9 +81,11 @@ public class Kruskals {
 				}
 			}
 		}
+		
+		return answer;
 	}
 	
-	class Connection implements Comparable<Connection>
+	public class Connection implements Comparable<Connection>
 	{
 		
 		public int compareTo(Connection c){
@@ -89,11 +97,31 @@ public class Kruskals {
 		public Node a;
 		public Node b;
 		
+		public Connection() {
+			
+		}
+		
+		public Connection (Node n1, Node n2, int l) {
+			this.a = n1;
+			this.b = n2; 
+			this.length = l;
+		}
+		
 	}
 	
-	class Node
+	public class Node
 	{
-		ArrayList<Node> neighbor;
+		public String name;
+		public ArrayList<Node> neighbor;
 		 
+		public Node() {
+			this.name = "";
+			this.neighbor = new ArrayList<Kruskals.Node>();
+		}
+		
+		public Node(String n) {
+			this.name = n;
+			this.neighbor = new ArrayList<Kruskals.Node>();
+		}
 	}
 }
