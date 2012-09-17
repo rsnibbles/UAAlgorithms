@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Floyds
 {
+	static int I = Integer.MAX_VALUE;
 	/* 
 		This assumes that the Adjacency Matrix has already been constructed,
 		that if there is no connection between two nodes that it is sufficiently large
@@ -19,7 +20,8 @@ public class Floyds
 			{
 				for(int j = 0; j < n; ++j)
 				{
-					aMatrix[i][j] = Math.min(aMatrix[i][j], aMatrix[i][k]+aMatrix[k][j]);	
+					if(aMatrix[i][k] != I && aMatrix[k][j] != I && aMatrix[i][k]+aMatrix[k][j] < aMatrix[i][j])
+						aMatrix[i][j] = aMatrix[i][k]+aMatrix[k][j];	
 				}
 			}
 		}
@@ -39,7 +41,6 @@ public class Floyds
 	
 	Integer[][] globalAdjacencyMatrix;
 	Integer[][] globalNextMatrix;
-	Integer infinity = Integer.MAX_VALUE;
 	
 	ArrayList<Integer[][]> floyds(Integer[][] adjacencyMatrix, Integer[][] nextMatrix)
 	{
@@ -55,7 +56,8 @@ public class Floyds
 			{
 				for(int j = 0; j < n; ++j)
 				{
-					if(aMatrix[i][k].intValue() + aMatrix[k][j].intValue() < aMatrix[i][j].intValue())
+					if(aMatrix[i][k].intValue() != I && aMatrix[k][j].intValue() != I && 
+						aMatrix[i][k].intValue() + aMatrix[k][j].intValue() < aMatrix[i][j].intValue())
 					{
 						aMatrix[i][j] = new Integer(aMatrix[i][k].intValue() + aMatrix[k][j].intValue());
 						nextMatrix[i][j] = new Integer(k);
@@ -79,7 +81,7 @@ public class Floyds
 	
 	String getPath(int i, int j)
 	{
-		if(globalAdjacencyMatrix[i][j] >= infinity) // >= just in case
+		if(globalAdjacencyMatrix[i][j] >= I) // >= just in case
 			return "no path";
 		Integer intermediate = globalNextMatrix[i][j];
 		if(intermediate == null)
