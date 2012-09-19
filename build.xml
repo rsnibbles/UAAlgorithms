@@ -1,4 +1,4 @@
-<!-- generated: Mon Aug 27 17:19:26 EDT 2012 by genbuild.sh @3e64e4e60690b5c421bdf176c40d30ce8601f0d6 -->
+<!-- generated: Wed Sep 19 19:50:55 EDT 2012 by genbuild.sh @d82e7a28f256adbe240e9cd93add2a83ae41eb23 -->
 <project name="UAAlgorithms" default="all" >
 	<target name="clean">
 		<delete dir="target" verbose="true" includeemptydirs="true" />
@@ -10,9 +10,27 @@
 	</target>
 
 	<target name="compile">
+		<antcall target="CombinationsPermutations" />
 		<antcall target="DynamicProgramming" />
 		<antcall target="GraphAlgorithms" />
 		<antcall target="Math" />
+	</target>
+
+	<target name="CombinationsPermutations" 
+		depends="Permutations,Subsets" />
+
+	<target name="Permutations"
+		depends="CombinationsPermutations/Permutations.java" />
+	<target name="CombinationsPermutations/Permutations.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="main/CombinationsPermutations/" destdir="target/" includes="Permutations.java" />
+	</target>
+
+	<target name="Subsets"
+		depends="CombinationsPermutations/Subsets.java" />
+	<target name="CombinationsPermutations/Subsets.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="main/CombinationsPermutations/" destdir="target/" includes="Subsets.java" />
 	</target>
 
 	<target name="DynamicProgramming" 
@@ -111,7 +129,17 @@
 	</target>
 
 	<target name="Math" 
-		depends="Math/PrimalityTest,Math/PrimeFactorization,Math/PrimeGeneration" />
+		depends="Math/GreatestCommonDenominator,Math/PrimalityTest,Math/PrimeFactorization,Math/PrimeGeneration" />
+
+	<target name="Math/GreatestCommonDenominator" 
+		depends="GCD" />
+
+	<target name="GCD"
+		depends="Math/GreatestCommonDenominator/GCD.java" />
+	<target name="Math/GreatestCommonDenominator/GCD.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="main/Math/GreatestCommonDenominator/" destdir="target/" includes="GCD.java" />
+	</target>
 
 	<target name="Math/PrimalityTest" 
 		depends="NaivePrimeTest" />
@@ -245,7 +273,17 @@
 	</target>
 
 	<target name="TestMath" 
-		depends="TestMath/PrimalityTest,TestMath/PrimeFactorization,TestMath/PrimeGeneration,Math" />
+		depends="TestMath/GreatestCommonDenominator,TestMath/PrimalityTest,TestMath/PrimeFactorization,TestMath/PrimeGeneration,Math" />
+
+	<target name="TestMath/GreatestCommonDenominator" 
+		depends="TestGCD,Math/GreatestCommonDenominator" />
+
+	<target name="TestGCD"
+		depends="Math/GreatestCommonDenominator/TestGCD.java" />
+	<target name="Math/GreatestCommonDenominator/TestGCD.java" depends="Math/GreatestCommonDenominator/GCD.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/Math/GreatestCommonDenominator/" destdir="target/" includes="TestGCD.java" />
+	</target>
 
 	<target name="TestMath/PrimalityTest" 
 		depends="TestNaivePrimeTest,Math/PrimalityTest" />
