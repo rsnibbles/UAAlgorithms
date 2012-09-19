@@ -7,71 +7,6 @@ import java.util.Collections;
 
 public class Permutations
 {
-	public static void main(String[] args)
-	{
-		Scanner scan = new Scanner(System.in);
-
-		while(true)
-		{
-			System.out.println("Which algo?  1 = BottomUp, 2 = BottomUpMinChange, 3 = JohnsonTrotter, 4 = Lexicographic, 0 = Quit");
-			int w = scan.nextInt();
-			if(w == 0) return;
-
-			System.out.println("How many items?");
-			int n = scan.nextInt();
-
-			boolean print = false;
-
-			System.out.println("Print results (y means yes)?");
-			String s = scan.next();
-			if(s.equals("y"))
-				print = true;
-			
-
-			List<String> list = new ArrayList<String>();
-
-			for(int i = 0; i < n; i++)
-				list.add((char)('A' + i) + "");
-
-			List<List<String>> result = new ArrayList<List<String>>();
-
-			long startTime = System.currentTimeMillis();
-
-			switch(w)
-			{
-				case 1:
-					result = BottomUp(list);
-					break;				
-				case 2:
-					result = BottomUpMinChange(list);
-					break;				
-				case 3:
-					result = JohnsonTrotter(list);
-					break;				
-				case 4:
-					result = lexicographic(list);
-					break;
-			}
-
-			long stopTime = System.currentTimeMillis();
-
-			if(print)
-			{
-				for(List<String> permutation : result)
-				{
-					System.out.print("Result:  { ");
-					for(String x : permutation)
-					{
-						System.out.print(x + " ");
-					}
-					System.out.println("}");
-				}
-			}	
-
-			System.out.println("Time:  " + (stopTime - startTime));
-		}
-	}
-
 	public static <T> List<List<T>> BottomUp(List<T> items)
 	{
 		List<List<T>> results = new ArrayList<List<T>>();
@@ -211,7 +146,7 @@ public class Permutations
 		return result;
 	}
 
-	public static <T> boolean getNext(Integer[] Value, List<T> items)
+	private static <T> boolean getNext(Integer[] Value, List<T> items)
 	{
 		int N = items.size();
 		int i = N - 1;
@@ -250,7 +185,7 @@ public class Permutations
 		return true;
 	}
 
-	public static boolean isMobile(Integer[] permutation, boolean[] arrows, int index)
+	private static boolean isMobile(Integer[] permutation, boolean[] arrows, int index)
 	{
 		if(index == 0 && !arrows[index])
 		{
