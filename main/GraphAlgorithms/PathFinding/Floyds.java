@@ -10,7 +10,7 @@ public class Floyds
 		and that the connection between a node and itself is 0
 	*/
 
-	int[][] floyds(int[][] adjacencyMatrix)
+	public int[][] floyds(int[][] adjacencyMatrix)
 	{
 		int[][] aMatrix = adjacencyMatrix;
 		int n = aMatrix.length; 
@@ -42,7 +42,7 @@ public class Floyds
 	Integer[][] globalAdjacencyMatrix;
 	Integer[][] globalNextMatrix;
 	
-	ArrayList<Integer[][]> floyds(Integer[][] adjacencyMatrix, Integer[][] nextMatrix)
+	public ArrayList<Integer[][]> floyds(Integer[][] adjacencyMatrix, Integer[][] nextMatrix)
 	{
 		ArrayList<Integer[][]> Matrices = new ArrayList<Integer[][]>();
 		Integer[][] aMatrix = adjacencyMatrix;
@@ -79,7 +79,7 @@ public class Floyds
 		getPath assumes it has adjacencyMatrix and nextMatrix in scope, as well as an "infinity"
 	*/
 	
-	String getPath(int i, int j)
+	public String getPath(int i, int j)
 	{
 		if(globalAdjacencyMatrix[i][j] >= I) // >= just in case
 			return "no path";
