@@ -6,64 +6,6 @@ import java.util.ArrayList;
 
 public class Subsets
 {
-        public static void main(String[] args)
-        {
-                Scanner scan = new Scanner(System.in);
-
-                while(true)
-                {
-                        System.out.println("Which algo?  1 = BottomUp, 2 = bitRepresentationTrick, 0 = Quit");
-                        int w = scan.nextInt();
-                        if(w == 0) return;
-
-                        System.out.println("How many items?");
-                        int n = scan.nextInt();
-
-                        boolean print = false;
-
-                        System.out.println("Print results (y means yes)?");
-                        String s = scan.next();
-                        if(s.equals("y"))
-                                print = true;
-
-                        Set<Integer> list = new HashSet<Integer>();
-
-                        for(int i = 0; i < n; i++)
-                                list.add((i+1));
-
-                        List<Set<Integer>> result = new ArrayList<Set<Integer>>();
-
-                        long startTime = System.currentTimeMillis();
-
-                        switch(w)
-                        {
-                                case 1:
-                                        result = bottomUp(list);
-                                        break;
-                                case 2:
-                                        result = bitRepresentationTrick(list);
-                                        break;
-                        }
-
-                        long stopTime = System.currentTimeMillis();
-
-                        if(print)
-                        {
-                                for(Set<Integer> subset : result)
-                                {
-                                        System.out.print("Result:  { ");
-                                        for(Integer x : subset)
-                                        {
-                                                System.out.print(x + " ");
-                                        }
-                                        System.out.println("}");
-				}
-			}
-
-			System.out.println("Time:  " + (stopTime - startTime));
-		}
-	}
-
 	public static <T> List<Set<T>> bitRepresentationTrick(Set<T> originalSet)
 	{
 		List<Set<T>> result = new ArrayList<Set<T>>();
