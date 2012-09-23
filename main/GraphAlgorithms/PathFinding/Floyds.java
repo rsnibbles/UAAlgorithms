@@ -3,15 +3,15 @@ package main.GraphAlgorithms.PathFinding;
 import java.util.*;
 
 public class Floyds {
-
-	static int I = Integer.MAX_VALUE;
 	/* 
 	 This assumes that the Adjacency Matrix has already been constructed,
 	 that if there is no connection between two nodes that it is sufficiently large
 	 and that the connection between a node and itself is 0
 	 */
-
 	public int[][] floyds(int[][] adjacencyMatrix) {
+		// Used as infinity
+		final int I = Integer.MAX_VALUE;
+		
 		int[][] aMatrix = adjacencyMatrix;
 		int n = aMatrix.length;
 		for (int k = 0; k < n; ++k) {
@@ -39,6 +39,9 @@ public class Floyds {
 	Integer[][] globalNextMatrix;
 
 	public ArrayList<Integer[][]> floyds(Integer[][] adjacencyMatrix, Integer[][] nextMatrix) {
+		// Used as infinity
+		final int I = Integer.MAX_VALUE;
+		
 		ArrayList<Integer[][]> Matrices = new ArrayList<Integer[][]>();
 		Integer[][] aMatrix = adjacencyMatrix;
 		int n = aMatrix.length;
@@ -72,6 +75,9 @@ public class Floyds {
 	 getPath assumes it has adjacencyMatrix and nextMatrix in scope, as well as an "infinity"
 	 */
 	public String getPath(int i, int j) {
+		// Used as infinity
+		final int I = Integer.MAX_VALUE;
+		
 		if (globalAdjacencyMatrix[i][j] >= I) // >= just in case
 		{
 			return "no path";
