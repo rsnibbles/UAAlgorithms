@@ -50,9 +50,9 @@ public class Floyds {
 		for (int k = 0; k < n; ++k) {
 			for (int i = 0; i < n; ++i) {
 				for (int j = 0; j < n; ++j) {
-					if (aMatrix[i][k].intValue() != I && aMatrix[k][j].intValue() != I
-							&& aMatrix[i][k].intValue() + aMatrix[k][j].intValue() < aMatrix[i][j].intValue()) {
-						aMatrix[i][j] = new Integer(aMatrix[i][k].intValue() + aMatrix[k][j].intValue());
+					if (aMatrix[i][k] != I && aMatrix[k][j] != I
+							&& aMatrix[i][k] + aMatrix[k][j] < aMatrix[i][j]) {
+						aMatrix[i][j] = new Integer(aMatrix[i][k] + aMatrix[k][j]);
 						nextMatrix[i][j] = new Integer(k);
 					}
 				}
@@ -80,7 +80,7 @@ public class Floyds {
 		if (intermediate == null) {
 			return " "; //There is an edge from i to j, with no vertices between
 		} else {
-			return getPath(i, intermediate.intValue()) + intermediate.toString() + getPath(intermediate.intValue(), j);
+			return getPath(i, intermediate) + intermediate.toString() + getPath(intermediate, j);
 		}
 	}
 }
