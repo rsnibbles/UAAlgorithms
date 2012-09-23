@@ -10,6 +10,8 @@ public class TestFloyds {
 	public static void main(String[] args) {
 		testOne(false);
 		testTwo(false);
+		testThree(false);
+		testFour(false);
 		
 		if (!success) {
 			System.out.println("FAILED: TestFloyds");
@@ -129,11 +131,126 @@ public class TestFloyds {
 			success = false;
 		}
 	}
+	
+	public static void testThree(boolean printDebug) {
+		final int I = Integer.MAX_VALUE;
+		int[][] testMatrix = {
+		{0, 20, 5, 10, I, I, I, I},
+		{20, 0, I, I, 40, I, I, I},
+		{5, I, 0, 10, I, 35, I, I},
+		{10, I, 10, 0, 60, I, 20, I},
+		{I, 40, I, 60, 0, 10, I, 10},
+		{I, I, 35, I, 10, 0, 10, 25},
+		{I, I, I, 20, I, 10, 0, 40},
+		{I, I, I, I, 10, 25, 40, 0}};
+		
+		int[][] solMatrix = {
+		{0, 20, 5, 10, 50, 40, 30, 60},
+		{20, 0, 25, 30, 40, 50, 50, 50},
+		{5, 25, 0, 10, 45, 35, 30, 55},
+		{10, 30, 10, 0, 40, 30, 20, 50},
+		{50, 40, 45, 40, 0, 10, 20, 10},
+		{40, 50, 35, 30, 10, 0, 10, 20},
+		{30, 50, 30, 20, 20, 10, 0, 30},
+		{60, 50, 55, 50, 10, 20, 30, 0}};
+		
+		Floyds fyd = new Floyds();
+		
+		int[][] answer = fyd.floyds(testMatrix);
+		
+		for (int i = 0; i < solMatrix.length; ++i) {
+			for (int j = 0; j < solMatrix.length; ++j) {
+				if (answer[i][j] != solMatrix[i][j]) {
+					success = false;
+				}
+			}
+		}
+	}
+	
+	public static void testFour(boolean printDebug) {
+		final int I = Integer.MAX_VALUE;
+		int[][] test = {
+		{0, 20, 5, 10, I, I, I, I},
+		{20, 0, I, I, 40, I, I, I},
+		{5, I, 0, 10, I, 35, I, I},
+		{10, I, 10, 0, 60, I, 20, I},
+		{I, 40, I, 60, 0, 10, I, 10},
+		{I, I, 35, I, 10, 0, 10, 25},
+		{I, I, I, 20, I, 10, 0, 40},
+		{I, I, I, I, 10, 25, 40, 0}};
+		
+		int[][] solMatrix = {
+		{0, 20, 5, 10, 50, 40, 30, 60},
+		{20, 0, 25, 30, 40, 50, 50, 50},
+		{5, 25, 0, 10, 45, 35, 30, 55},
+		{10, 30, 10, 0, 40, 30, 20, 50},
+		{50, 40, 45, 40, 0, 10, 20, 10},
+		{40, 50, 35, 30, 10, 0, 10, 20},
+		{30, 50, 30, 20, 20, 10, 0, 30},
+		{60, 50, 55, 50, 10, 20, 30, 0}};
+		
+		Floyds.Node[][] testMatrix = new Floyds.Node[8][8];
+		Floyds fyd = new Floyds();
+		
+		for (int i = 0; i < testMatrix.length; ++i) {
+			for (int j = 0; j < testMatrix.length; ++j) {
+				testMatrix[i][j] = fyd.new Node();
+				testMatrix[i][j].d = test[i][j];
+			}
+		}
+		
+		Floyds.Node[][] answer = fyd.floyds(testMatrix);
+		
+		for (int i = 0; i < solMatrix.length; ++i) {
+			for (int j = 0; j < solMatrix.length; ++j) {
+				if (answer[i][j].d != solMatrix[i][j]) {
+					success = false;
+				}
+			}
+		}
+		
+		if(!fyd.getPath(answer, 0, 1).trim().equals("0 1")) {
+			success = false;
+		}
+		
+		if(!fyd.getPath(answer, 0, 6).trim().equals("0 3 6")) {
+			success = false;
+		}
+		
+		if(!fyd.getPath(answer, 7, 2).trim().equals("7 4 5 2")) {
+			success = false;
+		}
+		
+		if(!fyd.getPath(answer, 1, 2).trim().equals("1 0 2")) {
+			success = false;
+		}
+		
+		if(!fyd.getPath(answer, 2, 7).trim().equals("2 5 4 7")) {
+			success = false;
+		}
+		
+		if(!fyd.getPath(answer, 4, 3).trim().equals("4 5 6 3")) {
+			success = false;
+		}
+		
+		if(!fyd.getPath(answer, 5, 1).trim().equals("5 4 1")) {
+			success = false;
+		}
+	}
 
 	public static void printArray(int[][] array) {
 		for (int i = 0; i < array.length; ++i) {
 			for (int j = 0; j < array.length; ++j) {
 				System.out.print(array[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+	
+	public static void printArray(Floyds.Node[][] array) {
+		for (int i = 0; i < array.length; ++i) {
+			for (int j = 0; j < array.length; ++j) {
+				System.out.print(array[i][j].d + " ");
 			}
 			System.out.println();
 		}
