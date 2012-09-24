@@ -8,8 +8,8 @@ public class TestGrahamScan {
 	public static void main(String[] args) {
 		success = true;
 		
-		testOne(true);
-		testTwo(true);
+		//testOne(true);
+		//testTwo(true);
 		testThree(true);
 		
 		if (!success) {
@@ -40,7 +40,7 @@ public class TestGrahamScan {
 		points.add(gs.new Point(5, -2));
 		points.add(gs.new Point(5, 1));
 		
-		Collections.shuffle(points);
+		//Collections.shuffle(points);
 		
 		ArrayList<GrahamScan.Point> answer = gs.doGraham(points);
 		
@@ -66,7 +66,7 @@ public class TestGrahamScan {
 		points.add(gs.new Point(8, 5));
 		points.add(gs.new Point(4, 7));
 		
-		Collections.shuffle(points);
+		//Collections.shuffle(points);
 		
 		ArrayList<GrahamScan.Point> answer = gs.doGraham(points);
 		
@@ -91,9 +91,7 @@ public class TestGrahamScan {
 		points.add(gs.new Point(2, -2));
 		
 		//right
-		points.add(gs.new Point(3, -3));
-		points.add(gs.new Point(3, -2));
-		points.add(gs.new Point(3, 3));
+		points.add(gs.new Point(3, -1));
 		//top
 		points.add(gs.new Point(3, 3));
 		points.add(gs.new Point(1, 3));
@@ -103,16 +101,15 @@ public class TestGrahamScan {
 		points.add(gs.new Point(0, -3));
 		points.add(gs.new Point(-3, -3));
 		//left
-		points.add(gs.new Point(-3, -3));
 		points.add(gs.new Point(-3, -2));
-		points.add(gs.new Point(-3, 3));
 		
-		Collections.shuffle(points);
+		//Collections.shuffle(points);
 		
 		ArrayList<GrahamScan.Point> answer = gs.doGraham(points);
 		
 		if (answer.size() != 8) {
 			success = false;
+			
 			return;
 		}
 	}
