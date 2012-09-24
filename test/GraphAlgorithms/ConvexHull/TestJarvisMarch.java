@@ -76,6 +76,7 @@ public class TestJarvisMarch {
 		}
 	}
 	
+	// square hull
 	public static void testThree(boolean printDebug) {
 		ArrayList<Point2D.Double> points = new ArrayList<Point2D.Double>();
 		
@@ -90,9 +91,7 @@ public class TestJarvisMarch {
 		points.add(new Point2D.Double(2, -2));
 		
 		//right
-		points.add(new Point2D.Double(3, -3));
 		points.add(new Point2D.Double(3, -2));
-		points.add(new Point2D.Double(3, 3));
 		//top
 		points.add(new Point2D.Double(3, 3));
 		points.add(new Point2D.Double(1, 3));
@@ -102,9 +101,7 @@ public class TestJarvisMarch {
 		points.add(new Point2D.Double(0, -3));
 		points.add(new Point2D.Double(-3, -3));
 		//left
-		points.add(new Point2D.Double(-3, -3));
 		points.add(new Point2D.Double(-3, -2));
-		points.add(new Point2D.Double(-3, 3));
 		
 		Collections.shuffle(points);
 		

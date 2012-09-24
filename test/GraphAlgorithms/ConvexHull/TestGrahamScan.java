@@ -8,8 +8,8 @@ public class TestGrahamScan {
 	public static void main(String[] args) {
 		success = true;
 		
-		//testOne(true);
-		//testTwo(true);
+		testOne(true);
+		testTwo(true);
 		testThree(true);
 		
 		if (!success) {
@@ -76,6 +76,7 @@ public class TestGrahamScan {
 		}
 	}
 	
+	// square hull
 	public static void testThree(boolean printDebug) {
 		ArrayList<GrahamScan.Point> points = new ArrayList<GrahamScan.Point>();
 		GrahamScan gs = new GrahamScan();
