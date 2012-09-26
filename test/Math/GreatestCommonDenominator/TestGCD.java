@@ -38,5 +38,9 @@ public class TestGCD {
 		if (GCD.EuclidGCD(987654321, 234657) != 9) {
 			success = false;
 		}
+		
+		if (GCD.EuclidGCD(234657, 987654321) != 9) {
+			success = false;
+		}
 	}
 }
