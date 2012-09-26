@@ -9,7 +9,7 @@ public class BellmanFord {
 			if (n == source) {
 				n.distance = 0;
 			} else {
-				n.distance = Integer.MAX_VALUE;
+				n.distance = Double.MAX_VALUE;
 			}
 
 			n.predecessor = null;
