@@ -1,4 +1,4 @@
-<!-- generated: Wed Sep 19 19:50:55 EDT 2012 by genbuild.sh @d82e7a28f256adbe240e9cd93add2a83ae41eb23 -->
+<!-- generated: Wed Sep 26 17:26:00 EDT 2012 by genbuild.sh @a79fbeb0d4fd24b86c2917f6365b455597de1b27 -->
 <project name="UAAlgorithms" default="all" >
 	<target name="clean">
 		<delete dir="target" verbose="true" includeemptydirs="true" />
@@ -95,13 +95,20 @@
 	</target>
 
 	<target name="GraphAlgorithms/PathFinding" 
-		depends="BellmanFord,Floyds" />
+		depends="BellmanFord,Dijkstra,Floyds" />
 
 	<target name="BellmanFord"
 		depends="GraphAlgorithms/PathFinding/BellmanFord.java" />
 	<target name="GraphAlgorithms/PathFinding/BellmanFord.java" >
 		<mkdir dir="target/" />
 		<javac includeantruntime="false" srcdir="main/GraphAlgorithms/PathFinding/" destdir="target/" includes="BellmanFord.java" />
+	</target>
+
+	<target name="Dijkstra"
+		depends="GraphAlgorithms/PathFinding/Dijkstra.java" />
+	<target name="GraphAlgorithms/PathFinding/Dijkstra.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="main/GraphAlgorithms/PathFinding/" destdir="target/" includes="Dijkstra.java" />
 	</target>
 
 	<target name="Floyds"
@@ -129,7 +136,7 @@
 	</target>
 
 	<target name="Math" 
-		depends="Math/GreatestCommonDenominator,Math/PrimalityTest,Math/PrimeFactorization,Math/PrimeGeneration" />
+		depends="Math/GreatestCommonDenominator,Math/LeastCommonMultiple,Math/PrimalityTest,Math/PrimeFactorization,Math/PrimeGeneration" />
 
 	<target name="Math/GreatestCommonDenominator" 
 		depends="GCD" />
@@ -139,6 +146,16 @@
 	<target name="Math/GreatestCommonDenominator/GCD.java" >
 		<mkdir dir="target/" />
 		<javac includeantruntime="false" srcdir="main/Math/GreatestCommonDenominator/" destdir="target/" includes="GCD.java" />
+	</target>
+
+	<target name="Math/LeastCommonMultiple" 
+		depends="LCM" />
+
+	<target name="LCM"
+		depends="Math/LeastCommonMultiple/LCM.java" />
+	<target name="Math/LeastCommonMultiple/LCM.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="main/Math/LeastCommonMultiple/" destdir="target/" includes="LCM.java" />
 	</target>
 
 	<target name="Math/PrimalityTest" 
@@ -239,13 +256,20 @@
 	</target>
 
 	<target name="TestGraphAlgorithms/PathFinding" 
-		depends="TestBellmanFord,TestFloyds,GraphAlgorithms/PathFinding" />
+		depends="TestBellmanFord,TestDijkstra,TestFloyds,GraphAlgorithms/PathFinding" />
 
 	<target name="TestBellmanFord"
 		depends="GraphAlgorithms/PathFinding/TestBellmanFord.java" />
 	<target name="GraphAlgorithms/PathFinding/TestBellmanFord.java" depends="GraphAlgorithms/PathFinding/BellmanFord.java" >
 		<mkdir dir="target/" />
 		<javac includeantruntime="false" srcdir="test/GraphAlgorithms/PathFinding/" destdir="target/" includes="TestBellmanFord.java" />
+	</target>
+
+	<target name="TestDijkstra"
+		depends="GraphAlgorithms/PathFinding/TestDijkstra.java" />
+	<target name="GraphAlgorithms/PathFinding/TestDijkstra.java" depends="GraphAlgorithms/PathFinding/Dijkstra.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/GraphAlgorithms/PathFinding/" destdir="target/" includes="TestDijkstra.java" />
 	</target>
 
 	<target name="TestFloyds"
@@ -273,7 +297,7 @@
 	</target>
 
 	<target name="TestMath" 
-		depends="TestMath/GreatestCommonDenominator,TestMath/PrimalityTest,TestMath/PrimeFactorization,TestMath/PrimeGeneration,Math" />
+		depends="TestMath/GreatestCommonDenominator,TestMath/LeastCommonMultiple,TestMath/PrimalityTest,TestMath/PrimeFactorization,TestMath/PrimeGeneration,Math" />
 
 	<target name="TestMath/GreatestCommonDenominator" 
 		depends="TestGCD,Math/GreatestCommonDenominator" />
@@ -283,6 +307,16 @@
 	<target name="Math/GreatestCommonDenominator/TestGCD.java" depends="Math/GreatestCommonDenominator/GCD.java" >
 		<mkdir dir="target/" />
 		<javac includeantruntime="false" srcdir="test/Math/GreatestCommonDenominator/" destdir="target/" includes="TestGCD.java" />
+	</target>
+
+	<target name="TestMath/LeastCommonMultiple" 
+		depends="TestLCM,Math/LeastCommonMultiple" />
+
+	<target name="TestLCM"
+		depends="Math/LeastCommonMultiple/TestLCM.java" />
+	<target name="Math/LeastCommonMultiple/TestLCM.java" depends="Math/LeastCommonMultiple/LCM.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/Math/LeastCommonMultiple/" destdir="target/" includes="TestLCM.java" />
 	</target>
 
 	<target name="TestMath/PrimalityTest" 
