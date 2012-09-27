@@ -13,6 +13,7 @@ public class TestJarvisMarch {
 		testOne(true);
 		testTwo(true);
 		testThree(true);
+		testFour(true);
 		
 		if (!success) {
 			System.out.println("FAILED: TestJarvisMarch");
@@ -151,4 +152,39 @@ public class TestJarvisMarch {
 			}
 		}
 	}
+
+	public static void testFour(boolean printDebug) {
+		ArrayList<Point2D> points = new ArrayList<Point2D>();
+		points.add(new Point2D.Double(5, 5));
+		points.add(new Point2D.Double(20607, 31762));
+		points.add(new Point2D.Double(23212, 29549));
+		points.add(new Point2D.Double(29416, 28215));
+		points.add(new Point2D.Double(29501, 18824));
+		points.add(new Point2D.Double(6273, 28816));
+		points.add(new Point2D.Double(553, 26883));
+		Collections.shuffle(points);
+
+		ArrayList<Point2D> hull = new ArrayList<Point2D>();
+
+		hull.add(new Point2D.Double(5, 5));
+		hull.add(new Point2D.Double(553, 26883));
+		hull.add(new Point2D.Double(6273, 28816));
+		hull.add(new Point2D.Double(20607, 31762));
+		hull.add(new Point2D.Double(29416, 28215));
+		hull.add(new Point2D.Double(29501, 18824));
+
+		ArrayList<Point2D> answer = JarvisMarch.computeHull(points);
+
+		if (answer.size() != hull.size()) {
+			success = false;
+			return;
+		}
+		for(int i = 0; i < hull.size(); ++i) {
+			if(!answer.get(0).equals(hull.get(0))) {
+				success = false;
+				return;
+			}
+		}
+	}
+
 }

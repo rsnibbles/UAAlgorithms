@@ -58,6 +58,8 @@ public class JarvisMarch {
 		onHull.add(points.get(0));
 
 		boolean completeHull = false;
+		ArrayList<Point2D> previousAdded = new ArrayList<Point2D>(),
+			beforePreviouslyAdded = new ArrayList<Point2D>();
 		while(!completeHull) {
 			Point2D cp = chull.get(chull.size() - 1);
 
@@ -71,7 +73,14 @@ public class JarvisMarch {
 			ArrayList<Point2D> smallest = new ArrayList<Point2D>();
 			double smallestAngle = Double.POSITIVE_INFINITY;
 			for(Point2D p : points) {
-				if(p == cp)
+				if(p.equals(cp))
+					continue;
+				boolean inline = false;
+				// if it's an about face turn, skip it
+				for(Point2D pre : beforePreviouslyAdded)
+					if(p.equals(pre))
+						inline = true;
+				if(inline)
 					continue;
 
 				double angle = angle(cp, p) - lastAngle;
@@ -97,12 +106,15 @@ public class JarvisMarch {
 			// sort smallest based on distance to cp
 			Collections.sort(points, new JarvisMarch.DistanceComparator(cp));
 
+			beforePreviouslyAdded = previousAdded;
+			previousAdded = new ArrayList<Point2D>();
 			if(colinear) {
 				for(Point2D p : smallest) {
 					if(onHull.contains(p)) {
 						completeHull = true;
 						break;
 					} else {
+						previousAdded.add(p);
 						onHull.add(p);
 						chull.add(p);
 					}
@@ -112,6 +124,7 @@ public class JarvisMarch {
 				if(onHull.contains(p)) {
 					completeHull = true;
 				} else {
+					previousAdded.add(p);
 					onHull.add(p);
 					chull.add(p);
 				}
