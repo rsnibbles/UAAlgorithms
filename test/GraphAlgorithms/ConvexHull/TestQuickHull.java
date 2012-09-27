@@ -163,13 +163,12 @@ public class TestQuickHull {
 		Collections.shuffle(points);
 
 		ArrayList<Point2D> hull = new ArrayList<Point2D>();
-		points.add(new Point2D.Double(0, 136));
-		points.add(new Point2D.Double(118, 129));
-		points.add(new Point2D.Double(206, 94));
-		points.add(new Point2D.Double(207, 0));
+		hull.add(new Point2D.Double(0, 136));
+		hull.add(new Point2D.Double(118, 129));
+		hull.add(new Point2D.Double(206, 94));
+		hull.add(new Point2D.Double(207, 0));
 
 		ArrayList<Point2D> answer = QuickHull.computeHull(points);
-		System.err.println("answer.size: " + answer.size());
 
 		if (answer.size() != hull.size()) {
 			success = false;
