@@ -1,6 +1,5 @@
 package test.Math.LeastCommonMultiple;
 
-import java.util.*;
 import main.Math.LeastCommonMultiple.LCM;
 
 public class TestLCM {

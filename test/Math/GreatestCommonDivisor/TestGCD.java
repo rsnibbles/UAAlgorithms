@@ -1,7 +1,6 @@
-package test.Math.GreatestCommonDenominator;
+package test.Math.GreatestCommonDivisor;
 
-import java.util.*;
-import main.Math.GreatestCommonDenominator.GCD;
+import main.Math.GreatestCommonDivisior.GCD;
 
 public class TestGCD {
 	public static boolean success = true;
@@ -19,7 +18,7 @@ public class TestGCD {
 	}
 
 	public static void testOne() {
-		if (GCD.EuclidGCD(1989, 867) != 51) {
+		if (GCD.EuclidGCD(867, 1989) != 51) {
 			success = false;
 		}
 		
@@ -40,6 +39,14 @@ public class TestGCD {
 		}
 		
 		if (GCD.EuclidGCD(234657, 987654321) != 9) {
+			success = false;
+		}
+		
+		if (GCD.EuclidGCD(987654321, 234657) != 9) {
+			success = false;
+		}
+		
+		if (GCD.EuclidGCD(Long.MAX_VALUE, Long.MAX_VALUE) != Long.MAX_VALUE) {
 			success = false;
 		}
 	}

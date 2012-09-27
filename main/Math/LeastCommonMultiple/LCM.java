@@ -2,12 +2,6 @@ package main.Math.LeastCommonMultiple;
 
 public class LCM {	
 	public static long lcm(long a, long b) {
-		if (a < b) {
-			long temp = a;
-			a = b;
-			b = temp;
-		}
-		
 		long num1 = a;
 		long num2 = b;
 
