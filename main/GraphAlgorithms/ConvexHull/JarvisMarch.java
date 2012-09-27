@@ -60,6 +60,7 @@ public class JarvisMarch {
 		boolean completeHull = false;
 		ArrayList<Point2D> previousAdded = new ArrayList<Point2D>(),
 			beforePreviouslyAdded = new ArrayList<Point2D>();
+		previousAdded.add(points.get(0));
 		while(!completeHull) {
 			Point2D cp = chull.get(chull.size() - 1);
 
