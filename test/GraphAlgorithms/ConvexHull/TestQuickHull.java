@@ -13,6 +13,7 @@ public class TestQuickHull {
 		testOne(true);
 		testTwo(true);
 		testThree(true);
+		testFour(true);
 		
 		if (!success) {
 			System.out.println("FAILED: TestQuickHull");
@@ -151,4 +152,35 @@ public class TestQuickHull {
 			}
 		}
 	}
+
+	public static void testFour(boolean printDebug) {
+		ArrayList<Point2D> points = new ArrayList<Point2D>();
+		points.add(new Point2D.Double(118, 129));
+		points.add(new Point2D.Double(144, 107));
+		points.add(new Point2D.Double(206,  94));
+		points.add(new Point2D.Double(207,  50));
+		points.add(new Point2D.Double(  0, 136));
+		Collections.shuffle(points);
+
+		ArrayList<Point2D> hull = new ArrayList<Point2D>();
+		points.add(new Point2D.Double(0, 136));
+		points.add(new Point2D.Double(118, 129));
+		points.add(new Point2D.Double(206, 94));
+		points.add(new Point2D.Double(207, 0));
+
+		ArrayList<Point2D> answer = QuickHull.computeHull(points);
+		System.err.println("answer.size: " + answer.size());
+
+		if (answer.size() != hull.size()) {
+			success = false;
+			return;
+		}
+		for(int i = 0; i < hull.size(); ++i) {
+			if(!answer.get(0).equals(hull.get(0))) {
+				success = false;
+				return;
+			}
+		}
+	}
+
 }

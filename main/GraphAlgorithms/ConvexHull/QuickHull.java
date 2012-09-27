@@ -13,7 +13,7 @@ public class QuickHull {
 		return Math.atan2((b.getY() - a.getY()), (b.getX() - a.getX()));
 	}
 	public static double distance(Line2D a, Point2D b) {
-		return Math.sqrt(a.ptLineDistSq(b));
+		return a.ptLineDist(b);
 	}
 	public static int above(Line2D a, Point2D b) {
 		// horizontal line
@@ -191,9 +191,6 @@ public class QuickHull {
 			outsideRight = new ArrayList<Point2D>(),
 			onRight = new ArrayList<Point2D>();
 
-		outsideLeft.add(max);
-		outsideRight.add(max);
-
 		for(Point2D p : points) {
 			if(p == left) {
 				outsideLeft.add(p);
@@ -201,6 +198,11 @@ public class QuickHull {
 			}
 			if(p == right) {
 				outsideRight.add(p);
+				continue;
+			}
+			if(p == max) {
+				outsideLeft.add(max);
+				outsideRight.add(max);
 				continue;
 			}
 
