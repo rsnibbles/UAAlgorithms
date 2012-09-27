@@ -1,4 +1,4 @@
-<!-- generated: Wed Sep 26 17:26:00 EDT 2012 by genbuild.sh @a79fbeb0d4fd24b86c2917f6365b455597de1b27 -->
+<!-- generated: Thu Sep 27 07:30:09 EDT 2012 by genbuild.sh @b27da97c2d3cde9e61f324fb38f0cebc43af3388 -->
 <project name="UAAlgorithms" default="all" >
 	<target name="clean">
 		<delete dir="target" verbose="true" includeemptydirs="true" />
@@ -136,16 +136,16 @@
 	</target>
 
 	<target name="Math" 
-		depends="Math/GreatestCommonDenominator,Math/LeastCommonMultiple,Math/PrimalityTest,Math/PrimeFactorization,Math/PrimeGeneration" />
+		depends="Math/GreatestCommonDivisor,Math/LeastCommonMultiple,Math/PrimalityTest,Math/PrimeFactorization,Math/PrimeGeneration" />
 
-	<target name="Math/GreatestCommonDenominator" 
+	<target name="Math/GreatestCommonDivisor" 
 		depends="GCD" />
 
 	<target name="GCD"
-		depends="Math/GreatestCommonDenominator/GCD.java" />
-	<target name="Math/GreatestCommonDenominator/GCD.java" >
+		depends="Math/GreatestCommonDivisor/GCD.java" />
+	<target name="Math/GreatestCommonDivisor/GCD.java" >
 		<mkdir dir="target/" />
-		<javac includeantruntime="false" srcdir="main/Math/GreatestCommonDenominator/" destdir="target/" includes="GCD.java" />
+		<javac includeantruntime="false" srcdir="main/Math/GreatestCommonDivisor/" destdir="target/" includes="GCD.java" />
 	</target>
 
 	<target name="Math/LeastCommonMultiple" 
@@ -297,16 +297,16 @@
 	</target>
 
 	<target name="TestMath" 
-		depends="TestMath/GreatestCommonDenominator,TestMath/LeastCommonMultiple,TestMath/PrimalityTest,TestMath/PrimeFactorization,TestMath/PrimeGeneration,Math" />
+		depends="TestMath/GreatestCommonDivisor,TestMath/LeastCommonMultiple,TestMath/PrimalityTest,TestMath/PrimeFactorization,TestMath/PrimeGeneration,Math" />
 
-	<target name="TestMath/GreatestCommonDenominator" 
-		depends="TestGCD,Math/GreatestCommonDenominator" />
+	<target name="TestMath/GreatestCommonDivisor" 
+		depends="TestGCD,Math/GreatestCommonDivisor" />
 
 	<target name="TestGCD"
-		depends="Math/GreatestCommonDenominator/TestGCD.java" />
-	<target name="Math/GreatestCommonDenominator/TestGCD.java" depends="Math/GreatestCommonDenominator/GCD.java" >
+		depends="Math/GreatestCommonDivisor/TestGCD.java" />
+	<target name="Math/GreatestCommonDivisor/TestGCD.java" depends="Math/GreatestCommonDivisor/GCD.java" >
 		<mkdir dir="target/" />
-		<javac includeantruntime="false" srcdir="test/Math/GreatestCommonDenominator/" destdir="target/" includes="TestGCD.java" />
+		<javac includeantruntime="false" srcdir="test/Math/GreatestCommonDivisor/" destdir="target/" includes="TestGCD.java" />
 	</target>
 
 	<target name="TestMath/LeastCommonMultiple" 

@@ -1,4 +1,4 @@
-package main.Math.GreatestCommonDivisior;
+package main.Math.GreatestCommonDivisor;
 
 public class GCD {
 	public static long EuclidGCD(long r0, long r1) {
@@ -13,3 +13,4 @@ public class GCD {
 		return r1;
 	}
 }
+

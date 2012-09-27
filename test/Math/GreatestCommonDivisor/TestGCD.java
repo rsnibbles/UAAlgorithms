@@ -1,6 +1,6 @@
 package test.Math.GreatestCommonDivisor;
 
-import main.Math.GreatestCommonDivisior.GCD;
+import main.Math.GreatestCommonDivisor.GCD;
 
 public class TestGCD {
 	public static boolean success = true;
