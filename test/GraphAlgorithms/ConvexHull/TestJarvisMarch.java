@@ -1,4 +1,5 @@
 package test.GraphAlgorithms.ConvexHull;
+
 import java.awt.geom.Point2D;
 import java.util.*;
 import main.GraphAlgorithms.ConvexHull.JarvisMarch;
@@ -23,7 +24,7 @@ public class TestJarvisMarch {
 	}
 	
 	public static void testOne(boolean printDebug) {
-		ArrayList<Point2D.Double> points = new ArrayList<Point2D.Double>();
+		ArrayList<Point2D> points = new ArrayList<Point2D>();
 		
 		points.add(new Point2D.Double(4, 3));
 		points.add(new Point2D.Double(-5, 0));
@@ -41,17 +42,16 @@ public class TestJarvisMarch {
 		
 		Collections.shuffle(points);
 		
-		JarvisMarch jm = new JarvisMarch();
-		ArrayList<Point2D.Double> answer = jm.doJarvis(points);
-		
+		ArrayList<Point2D> answer = JarvisMarch.computeHull(points);
 		if (answer.size() != 8) {
+			System.err.println("failed 1");
 			success = false;
 			return;
 		}
 	}
 	
 	public static void testTwo(boolean printDebug) {
-		ArrayList<Point2D.Double> points = new ArrayList<Point2D.Double>();
+		ArrayList<Point2D> points = new ArrayList<Point2D>();
 		
 		points.add(new Point2D.Double(0, 0));
 		points.add(new Point2D.Double(1, 1));
@@ -67,10 +67,10 @@ public class TestJarvisMarch {
 		
 		Collections.shuffle(points);
 		
-		JarvisMarch jm = new JarvisMarch();
-		ArrayList<Point2D.Double> answer = jm.doJarvis(points);
+		ArrayList<Point2D> answer = JarvisMarch.computeHull(points);
 		
 		if (answer.size() != 5) {
+			System.err.println("failed 2");
 			success = false;
 			return;
 		}
@@ -78,7 +78,7 @@ public class TestJarvisMarch {
 	
 	// square hull
 	public static void testThree(boolean printDebug) {
-		ArrayList<Point2D.Double> points = new ArrayList<Point2D.Double>();
+		ArrayList<Point2D> points = new ArrayList<Point2D>();
 		
 		points.add(new Point2D.Double(0, 0));
 		points.add(new Point2D.Double(1, 1));
@@ -105,10 +105,10 @@ public class TestJarvisMarch {
 		
 		Collections.shuffle(points);
 		
-		JarvisMarch jm = new JarvisMarch();
-		ArrayList<Point2D.Double> answer = jm.doJarvis(points);
+		ArrayList<Point2D> answer = JarvisMarch.computeHull(points);
 		
 		if (answer.size() != 8) {
+			System.err.println("failed 3");
 			success = false;
 			return;
 		}

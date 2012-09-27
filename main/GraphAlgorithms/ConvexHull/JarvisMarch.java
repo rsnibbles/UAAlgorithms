@@ -1,67 +1,123 @@
 package main.GraphAlgorithms.ConvexHull;
 
-import java.util.*;
-import java.awt.geom.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Collections;
+import java.util.Comparator;
+import java.awt.geom.Point2D;
 
 public class JarvisMarch {
+	public static double angle(Point2D a, Point2D b) {
+		return Math.atan2((b.getY() - a.getY()), (b.getX() - a.getX()));
+	}
 
-	public ArrayList<Point2D.Double> doJarvis(ArrayList <Point2D.Double> points) {
-		Point2D.Double leftMost = points.get(0);
-		Point2D.Double next;
-		ArrayList<Point2D.Double> pointsAdded = new ArrayList<Point2D.Double> ();
-		
-		for(Point2D.Double p : points) {
-			if(p.x < leftMost.x || (p.x == leftMost.x && p.y < leftMost.y))
-				leftMost = p;
+	public static class XComparator implements Comparator<Point2D> {
+		public int compare(Point2D left, Point2D right) {
+			if(left.getX() < right.getX())
+				return -1;
+			if(left.getX() > right.getX())
+				return 1;
+			if(left.getY() < right.getY())
+				return -1;
+			if(left.getY() > right.getY())
+				return 1;
+			return 0;
 		}
-		
-		pointsAdded.add(leftMost);
-		
-		int i = 0;
-		while (i < pointsAdded.size()) {
-			if (i > 0) {
-				next = nextHullPoint(points,pointsAdded.get(i - 1), pointsAdded.get(i));
-			}
-			else {
-				next = nextHullPoint(points, pointsAdded.get(i), pointsAdded.get(i));
-			}
-			
-			
-			if (next != pointsAdded.get(0)) {
-				pointsAdded.add(next);
-			}
-			
-			++i;
+	}
+
+	public static class DistanceComparator implements Comparator<Point2D> {
+		private Point2D.Double basis = new Point2D.Double();
+
+		public DistanceComparator(Point2D basis) {
+			this.basis.x = basis.getX();
+			this.basis.y = basis.getY();
 		}
-		
-		return pointsAdded;
+		public int compare(Point2D left, Point2D right) {
+			double leftDistance = basis.distance(left),
+					rightDistance = basis.distance(right);
+			if(leftDistance < rightDistance)
+				return -1;
+			if(leftDistance > rightDistance)
+				return 1;
+			return 0;
+		}
 	}
-	
-	private double distance(Point2D.Double p1, Point2D.Double p2) {
-		double dx = p2.x - p1.x;
-		double dy = p2.y - p1.y;
-		
-		return dx * dx + dy * dy;
+
+	public static ArrayList<Point2D> computeHull(ArrayList<Point2D> points) {
+		return JarvisMarch.computeHull(points, true);
 	}
-	
-	private int turn(Point2D.Double p, Point2D.Double q, Point2D.Double r) {
-		return Double.compare((q.x - p.x) * (r.y - p.y) - (r.x - p.x) * (q.y - p.y), 0);
-	}
-	
-	private Point2D.Double nextHullPoint(ArrayList<Point2D.Double> points,Point2D.Double prev, Point2D.Double p) {
-		Point2D.Double q = prev;
-		
-		for (Point2D.Double r : points) {
-			int turn = turn(p, q, r);
-			double d1 = distance(p, r);
-			double d2 = distance(p, q);
-			if (turn == 1 || (turn == 0 && d1 > d2)) {
-				q = r;
+	public static ArrayList<Point2D> computeHull(ArrayList<Point2D> points,
+			boolean colinear) {
+		HashSet<Point2D> onHull = new HashSet<Point2D>();
+		// sort points based on x, then y
+		Collections.sort(points, new JarvisMarch.XComparator());
+
+		ArrayList<Point2D> chull = new ArrayList<Point2D>();
+		chull.add(points.get(0));
+		onHull.add(points.get(0));
+
+		boolean completeHull = false;
+		while(!completeHull) {
+			Point2D cp = chull.get(chull.size() - 1);
+
+			double lastAngle = Math.PI / 2;
+			// if we have a previous point, computer the previous angle
+			if(chull.size() > 1)
+				lastAngle = angle(chull.get(chull.size() - 2), cp);
+			if(lastAngle == Math.PI)
+				lastAngle = 0;
+
+			ArrayList<Point2D> smallest = new ArrayList<Point2D>();
+			double smallestAngle = Double.POSITIVE_INFINITY;
+			for(Point2D p : points) {
+				if(p == cp)
+					continue;
+
+				double angle = angle(cp, p) - lastAngle;
+
+				// if it's an about face turn, skip it
+				if(angle == -Math.PI || angle == Math.PI)
+					continue;
+				if(angle > Math.PI)
+					angle -= 2*Math.PI;
+				if(angle < -Math.PI)
+					angle += 2*Math.PI;
+				angle = -angle;
+
+				if(angle < smallestAngle) {
+					smallest.clear();
+					smallest.add(p);
+					smallestAngle = angle;
+				} else if(angle == smallestAngle) {
+					smallest.add(p);
+				}
+			}
+
+			// sort smallest based on distance to cp
+			Collections.sort(points, new JarvisMarch.DistanceComparator(cp));
+
+			if(colinear) {
+				for(Point2D p : smallest) {
+					if(onHull.contains(p)) {
+						completeHull = true;
+						break;
+					} else {
+						onHull.add(p);
+						chull.add(p);
+					}
+				}
+			} else {
+				Point2D p = smallest.get(smallest.size() - 1);
+				if(onHull.contains(p)) {
+					completeHull = true;
+				} else {
+					onHull.add(p);
+					chull.add(p);
+				}
 			}
 		}
-		
-		return q;
+		return chull;
 	}
-	
-	
 }
+
