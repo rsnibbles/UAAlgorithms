@@ -1,4 +1,4 @@
-<!-- generated: Thu Sep 27 07:30:09 EDT 2012 by genbuild.sh @b27da97c2d3cde9e61f324fb38f0cebc43af3388 -->
+<!-- generated: Thu Sep 27 13:50:24 EDT 2012 by genbuild.sh @d6bbff669e5709a08563af05a483f250f2c1a91a -->
 <project name="UAAlgorithms" default="all" >
 	<target name="clean">
 		<delete dir="target" verbose="true" includeemptydirs="true" />
@@ -61,7 +61,7 @@
 		depends="GraphAlgorithms/ConvexHull,GraphAlgorithms/MST,GraphAlgorithms/PathFinding,GraphAlgorithms/Trees" />
 
 	<target name="GraphAlgorithms/ConvexHull" 
-		depends="GrahamScan,JarvisMarch" />
+		depends="GrahamScan,JarvisMarch,QuickHull" />
 
 	<target name="GrahamScan"
 		depends="GraphAlgorithms/ConvexHull/GrahamScan.java" />
@@ -75,6 +75,13 @@
 	<target name="GraphAlgorithms/ConvexHull/JarvisMarch.java" >
 		<mkdir dir="target/" />
 		<javac includeantruntime="false" srcdir="main/GraphAlgorithms/ConvexHull/" destdir="target/" includes="JarvisMarch.java" />
+	</target>
+
+	<target name="QuickHull"
+		depends="GraphAlgorithms/ConvexHull/QuickHull.java" />
+	<target name="GraphAlgorithms/ConvexHull/QuickHull.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="main/GraphAlgorithms/ConvexHull/" destdir="target/" includes="QuickHull.java" />
 	</target>
 
 	<target name="GraphAlgorithms/MST" 
@@ -222,7 +229,7 @@
 		depends="TestGraphAlgorithms/ConvexHull,TestGraphAlgorithms/MST,TestGraphAlgorithms/PathFinding,TestGraphAlgorithms/Trees,GraphAlgorithms" />
 
 	<target name="TestGraphAlgorithms/ConvexHull" 
-		depends="TestGrahamScan,TestJarvisMarch,GraphAlgorithms/ConvexHull" />
+		depends="TestGrahamScan,TestJarvisMarch,TestQuickHull,GraphAlgorithms/ConvexHull" />
 
 	<target name="TestGrahamScan"
 		depends="GraphAlgorithms/ConvexHull/TestGrahamScan.java" />
@@ -236,6 +243,13 @@
 	<target name="GraphAlgorithms/ConvexHull/TestJarvisMarch.java" depends="GraphAlgorithms/ConvexHull/JarvisMarch.java" >
 		<mkdir dir="target/" />
 		<javac includeantruntime="false" srcdir="test/GraphAlgorithms/ConvexHull/" destdir="target/" includes="TestJarvisMarch.java" />
+	</target>
+
+	<target name="TestQuickHull"
+		depends="GraphAlgorithms/ConvexHull/TestQuickHull.java" />
+	<target name="GraphAlgorithms/ConvexHull/TestQuickHull.java" depends="GraphAlgorithms/ConvexHull/QuickHull.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/GraphAlgorithms/ConvexHull/" destdir="target/" includes="TestQuickHull.java" />
 	</target>
 
 	<target name="TestGraphAlgorithms/MST" 
