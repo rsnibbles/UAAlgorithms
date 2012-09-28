@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.Collections;
 
+/*
+* O(n!)
+*/
 public class Permutations
 {
 	public static <T> List<List<T>> BottomUp(List<T> items)

@@ -6,6 +6,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 
+/*
+* O(2^n)
+*/
+
 public class Subsets
 {
 	public static <T> List<Set<T>> bitRepresentationTrick(Set<T> originalSet)
