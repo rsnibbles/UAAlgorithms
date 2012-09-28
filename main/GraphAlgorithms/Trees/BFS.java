@@ -1,3 +1,4 @@
+//In case you didn't know it's O(n) :D
 package main.GraphAlgorithms.Trees;
 import java.util.*;
 

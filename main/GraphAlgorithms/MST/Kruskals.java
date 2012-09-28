@@ -1,3 +1,4 @@
+//Time complexity O(ElogE) where E is the number of edges.
 package main.GraphAlgorithms.MST;
 import java.util.*;
 
