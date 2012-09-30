@@ -1,3 +1,5 @@
+//Quick hull is O(nlogn) where n is the number of elements, prerequisite: no
+//duplicate points. SERIOUSLY JERK.
 package main.GraphAlgorithms.ConvexHull;
 
 import java.util.ArrayList;

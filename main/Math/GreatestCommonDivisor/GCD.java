@@ -1,3 +1,4 @@
+//Time complexity O(logn) where n is the number of logarithm operations
 package main.Math.GreatestCommonDivisor;
 
 public class GCD {

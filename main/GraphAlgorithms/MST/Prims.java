@@ -3,7 +3,8 @@ import java.util.*;
 
 /*
 
-This handles the basic case of Prim's algorithm for constructing a minimum spanning tree. This currently accepts a list of nodes with the connections
+This handles the basic case of Prim's algorithm for constructing a minimum
+spanning tree. This currently accepts a list of nodes with the connections
 specified in each node.
 
 */

@@ -1,3 +1,5 @@
+//Time Complexity O(n*h) where n is number of elements on the hull,  is the
+//number of elements on the hull. Prerequisites: No duplicate points.
 package main.GraphAlgorithms.ConvexHull;
 
 import java.util.ArrayList;

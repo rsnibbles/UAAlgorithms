@@ -1,3 +1,5 @@
+//Time complexity O(n^3) where n is the number of nodes. There is a path
+//recovery portion that you should ignore if you don't need the exact path.
 package main.GraphAlgorithms.PathFinding;
 
 import java.util.*;
