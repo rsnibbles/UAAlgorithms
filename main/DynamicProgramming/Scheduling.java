@@ -33,18 +33,23 @@ public class Scheduling {
 
 		int[] pVals = new int[tasks.size() + 1];
 		double[] s = new double[tasks.size() + 1];
+		ArrayList<Task> pValSort = new ArrayList<Task>(tasks);
+
+		Collections.sort(tasks);
+
+		Collections.sort(pValSort, new startTimeComparator());
+
 		pVals[0] = 0;
+		int start = 0;
+		int stop = 0;
 
-		for (int i = 1; i < pVals.length; ++i) {
-			// O(n^2) to set p Values can be made to O(nlog(n)) by either sorting or binary search
-			Task t = tasks.get(i - 1);
-			int prev = i;
-
-			while (prev > 0 && t.start < tasks.get(prev - 1).stop) {
-				--prev;
+		while (start < tasks.size() && stop < tasks.size()) {
+			if (tasks.get(stop).stop <= tasks.get(start).start) {
+				++stop;
+			} else if (tasks.get(stop).stop > tasks.get(start).start) {
+				pVals[start + 1] = stop;
+				++start;
 			}
-
-			pVals[i] = prev;
 		}
 
 		// base case
@@ -85,6 +90,13 @@ public class Scheduling {
 			} else {
 				return (int) (this.start - t.start);
 			}
+		}
+	}
+
+	public class startTimeComparator implements Comparator<Task> {
+
+		public int compare(Task t1, Task t2) {
+			return (int) (t1.start - t2.start);
 		}
 	}
 }

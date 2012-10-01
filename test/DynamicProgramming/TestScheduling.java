@@ -15,6 +15,7 @@ public class TestScheduling {
 		testFive(true);
 		testSix(true);
 		testSeven(true);
+		testEight(true);
 
 		if (!success) {
 			System.out.println("FAILED: TestScheduling");
@@ -123,6 +124,20 @@ public class TestScheduling {
 		tasks.add(s.new Task(3, 4, 1));
 
 		if (s.WeightedScheduling(tasks) != 13) {
+			success = false;
+		}
+	}
+	
+	public static void testEight(boolean printDebug) {
+		Scheduling s = new Scheduling();
+		ArrayList<Scheduling.Task> tasks = new ArrayList<Scheduling.Task>();
+
+		tasks.add(s.new Task(1, 9, 3));
+		tasks.add(s.new Task(2, 8, 3));
+		tasks.add(s.new Task(3, 7, 5));
+		tasks.add(s.new Task(4, 6, 10));
+
+		if (s.WeightedScheduling(tasks) != 10) {
 			success = false;
 		}
 	}
