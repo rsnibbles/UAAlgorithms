@@ -1,4 +1,4 @@
-<!-- generated: Thu Sep 27 13:50:24 EDT 2012 by genbuild.sh @d6bbff669e5709a08563af05a483f250f2c1a91a -->
+<!-- generated: Mon Oct  1 21:42:58 EDT 2012 by genbuild.sh @ac9e93dc36d820ec482fd3bd408d57fc5727ee02 -->
 <project name="UAAlgorithms" default="all" >
 	<target name="clean">
 		<delete dir="target" verbose="true" includeemptydirs="true" />
@@ -11,6 +11,7 @@
 
 	<target name="compile">
 		<antcall target="CombinationsPermutations" />
+		<antcall target="DivideAndConquerAlgorithms" />
 		<antcall target="DynamicProgramming" />
 		<antcall target="GraphAlgorithms" />
 		<antcall target="Math" />
@@ -33,8 +34,25 @@
 		<javac includeantruntime="false" srcdir="main/CombinationsPermutations/" destdir="target/" includes="Subsets.java" />
 	</target>
 
+	<target name="DivideAndConquerAlgorithms" 
+		depends="QuickSelect" />
+
+	<target name="QuickSelect"
+		depends="DivideAndConquerAlgorithms/QuickSelect.java" />
+	<target name="DivideAndConquerAlgorithms/QuickSelect.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="main/DivideAndConquerAlgorithms/" destdir="target/" includes="QuickSelect.java" />
+	</target>
+
 	<target name="DynamicProgramming" 
-		depends="LongestCommonSubstring,MaximumSubarray,MountainClimbing" />
+		depends="Knapsack,LongestCommonSubstring,MaximumSubarray,MountainClimbing,Scheduling" />
+
+	<target name="Knapsack"
+		depends="DynamicProgramming/Knapsack.java" />
+	<target name="DynamicProgramming/Knapsack.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="main/DynamicProgramming/" destdir="target/" includes="Knapsack.java" />
+	</target>
 
 	<target name="LongestCommonSubstring"
 		depends="DynamicProgramming/LongestCommonSubstring.java" />
@@ -55,6 +73,13 @@
 	<target name="DynamicProgramming/MountainClimbing.java" >
 		<mkdir dir="target/" />
 		<javac includeantruntime="false" srcdir="main/DynamicProgramming/" destdir="target/" includes="MountainClimbing.java" />
+	</target>
+
+	<target name="Scheduling"
+		depends="DynamicProgramming/Scheduling.java" />
+	<target name="DynamicProgramming/Scheduling.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="main/DynamicProgramming/" destdir="target/" includes="Scheduling.java" />
 	</target>
 
 	<target name="GraphAlgorithms" 
@@ -196,13 +221,31 @@
 	</target>
 
 	<target name="tests">
+		<antcall target="TestDivideAndConquerAlgorithms" />
 		<antcall target="TestDynamicProgramming" />
 		<antcall target="TestGraphAlgorithms" />
 		<antcall target="TestMath" />
 	</target>
 
+	<target name="TestDivideAndConquerAlgorithms" 
+		depends="TestQuickSelect,DivideAndConquerAlgorithms" />
+
+	<target name="TestQuickSelect"
+		depends="DivideAndConquerAlgorithms/TestQuickSelect.java" />
+	<target name="DivideAndConquerAlgorithms/TestQuickSelect.java" depends="DivideAndConquerAlgorithms/QuickSelect.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/DivideAndConquerAlgorithms/" destdir="target/" includes="TestQuickSelect.java" />
+	</target>
+
 	<target name="TestDynamicProgramming" 
-		depends="TestLongestCommonSubstring,TestMaximumSubarray,TestMountainClimbing,DynamicProgramming" />
+		depends="TestKnapsack,TestLongestCommonSubstring,TestMaximumSubarray,TestMountainClimbing,TestScheduling,DynamicProgramming" />
+
+	<target name="TestKnapsack"
+		depends="DynamicProgramming/TestKnapsack.java" />
+	<target name="DynamicProgramming/TestKnapsack.java" depends="DynamicProgramming/Knapsack.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/DynamicProgramming/" destdir="target/" includes="TestKnapsack.java" />
+	</target>
 
 	<target name="TestLongestCommonSubstring"
 		depends="DynamicProgramming/TestLongestCommonSubstring.java" />
@@ -223,6 +266,13 @@
 	<target name="DynamicProgramming/TestMountainClimbing.java" depends="DynamicProgramming/MountainClimbing.java" >
 		<mkdir dir="target/" />
 		<javac includeantruntime="false" srcdir="test/DynamicProgramming/" destdir="target/" includes="TestMountainClimbing.java" />
+	</target>
+
+	<target name="TestScheduling"
+		depends="DynamicProgramming/TestScheduling.java" />
+	<target name="DynamicProgramming/TestScheduling.java" depends="DynamicProgramming/Scheduling.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/DynamicProgramming/" destdir="target/" includes="TestScheduling.java" />
 	</target>
 
 	<target name="TestGraphAlgorithms" 
