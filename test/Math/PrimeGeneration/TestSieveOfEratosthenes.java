@@ -24,15 +24,21 @@ public class TestSieveOfEratosthenes
 	{
 		SieveOfEratosthenes soe = new SieveOfEratosthenes();
 		
-		ArrayList<Integer> primes = soe.generate(300000000);
+		boolean[] primes = soe.generate(300000002);
 
 		TrialDivision td = new TrialDivision();
 		ArrayList<Long> factors;
 
-		for(int i = 0; i < 5; ++i) {
-			factors = td.doPrimeFactorization(primes.get(i));
+		Random rand = new Random();
+		
+		for(int i = 0; i < 100; ++i) {
+			int num = rand.nextInt(3000000) + 2;
+			factors = td.doPrimeFactorization(num);
 
-			if (factors.size() > 1) {
+			if (primes[num] && factors.size() <= 1) {
+				success = false;
+				break;
+			} else if (!primes[num] && factors.size() > 1) {
 				success = false;
 				break;
 			}
