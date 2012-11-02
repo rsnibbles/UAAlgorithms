@@ -19,6 +19,10 @@ public class TestDeBruijn {
 
 		testOne(true);
 		testTwo(true);
+		// TODO: it's possible to verify the output dynamically...
+		// Loop through adding length for strings to hash set, verify size is
+		// k^n and there are that many words in the hash set.
+		// What about making sure it's not the correct one rotated?
 
 		if (!success) {
 			System.out.println("FAILED: TestDeBruijn");
