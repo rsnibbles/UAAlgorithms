@@ -1,4 +1,4 @@
-<!-- generated: Mon Oct  1 23:38:22 EDT 2012 by genbuild.sh @57688c7cdc6896673005fb27c64c141fb47e4523 -->
+<!-- generated: Fri Nov  2 06:00:00 EDT 2012 by genbuild.sh @d7664a86696153d9260d91eefe02fbf7cef70c6e -->
 <project name="UAAlgorithms" default="all" >
 	<target name="clean">
 		<delete dir="target" verbose="true" includeemptydirs="true" />
@@ -10,28 +10,35 @@
 	</target>
 
 	<target name="compile">
-		<antcall target="CombinationsPermutations" />
+		<antcall target="Combinatorics" />
 		<antcall target="DivideAndConquerAlgorithms" />
 		<antcall target="DynamicProgramming" />
 		<antcall target="GraphAlgorithms" />
 		<antcall target="Math" />
 	</target>
 
-	<target name="CombinationsPermutations" 
-		depends="Permutations,Subsets" />
+	<target name="Combinatorics" 
+		depends="DeBruijn,Permutations,Subsets" />
+
+	<target name="DeBruijn"
+		depends="Combinatorics/DeBruijn.java" />
+	<target name="Combinatorics/DeBruijn.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="main/Combinatorics/" destdir="target/" includes="DeBruijn.java" />
+	</target>
 
 	<target name="Permutations"
-		depends="CombinationsPermutations/Permutations.java" />
-	<target name="CombinationsPermutations/Permutations.java" >
+		depends="Combinatorics/Permutations.java" />
+	<target name="Combinatorics/Permutations.java" >
 		<mkdir dir="target/" />
-		<javac includeantruntime="false" srcdir="main/CombinationsPermutations/" destdir="target/" includes="Permutations.java" />
+		<javac includeantruntime="false" srcdir="main/Combinatorics/" destdir="target/" includes="Permutations.java" />
 	</target>
 
 	<target name="Subsets"
-		depends="CombinationsPermutations/Subsets.java" />
-	<target name="CombinationsPermutations/Subsets.java" >
+		depends="Combinatorics/Subsets.java" />
+	<target name="Combinatorics/Subsets.java" >
 		<mkdir dir="target/" />
-		<javac includeantruntime="false" srcdir="main/CombinationsPermutations/" destdir="target/" includes="Subsets.java" />
+		<javac includeantruntime="false" srcdir="main/Combinatorics/" destdir="target/" includes="Subsets.java" />
 	</target>
 
 	<target name="DivideAndConquerAlgorithms" 
@@ -221,10 +228,21 @@
 	</target>
 
 	<target name="tests">
+		<antcall target="TestCombinatorics" />
 		<antcall target="TestDivideAndConquerAlgorithms" />
 		<antcall target="TestDynamicProgramming" />
 		<antcall target="TestGraphAlgorithms" />
 		<antcall target="TestMath" />
+	</target>
+
+	<target name="TestCombinatorics" 
+		depends="TestDeBruijn,Combinatorics" />
+
+	<target name="TestDeBruijn"
+		depends="Combinatorics/TestDeBruijn.java" />
+	<target name="Combinatorics/TestDeBruijn.java" depends="Combinatorics/DeBruijn.java" >
+		<mkdir dir="target/" />
+		<javac includeantruntime="false" srcdir="test/Combinatorics/" destdir="target/" includes="TestDeBruijn.java" />
 	</target>
 
 	<target name="TestDivideAndConquerAlgorithms" 

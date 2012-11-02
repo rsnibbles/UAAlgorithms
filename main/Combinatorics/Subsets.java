@@ -1,4 +1,4 @@
-package main.CombinationsPermutations;
+package main.Combinatorics;
 
 import java.util.Set;
 import java.util.HashSet;
