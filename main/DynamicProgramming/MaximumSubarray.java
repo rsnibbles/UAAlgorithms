@@ -6,26 +6,26 @@ public class MaximumSubarray {
 		long max = list[0];
 		int maxStart = 0;
 		int maxEnd = 0;
-		int currentStart = 0;
-		int currentEnd = 0;
-		long current = list[0];
+		int currentMaxStart = 0;
+		int currentMaxEnd = 0;
+		long currentMax = list[0];
 		
 		for (int i = 1; i < list.length; ++i) {
-			if (current > 0) {
-				currentEnd = i;
-				current += list[i];
+			if (currentMax > 0) {
+				currentMaxEnd = i;
+				currentMax += list[i];
 
 			}
 			else {
-				current = list[i];
-				currentStart = i;
-				currentEnd = i;
+				currentMax = list[i];
+				currentMaxStart = i;
+				currentMaxEnd = i;
 			}
 			
-			if (current > max) {
-				max = current;
-				maxStart = currentStart;
-				maxEnd = currentEnd;
+			if (currentMax > max) {
+				max = currentMax;
+				maxStart = currentMaxStart;
+				maxEnd = currentMaxEnd;
 			}
 		}
 		
@@ -40,17 +40,17 @@ public class MaximumSubarray {
 	
 	public long findMaximumSubarrayValue(long[] list) {
 		long max = list[0];
-		long current = list[0];
+		long currentMax = list[0];
 		
 		for (int i = 1; i < list.length; ++i) {
-			if (current > 0) {
-				current += list[i];
+			if (currentMax > 0) {
+				currentMax += list[i];
 			}
 			else {
-				current = list[i];
+				currentMax = list[i];
 			}
 			
-			max = Math.max(current, max);
+			max = Math.max(currentMax, max);
 		}
 		
 		return max;
