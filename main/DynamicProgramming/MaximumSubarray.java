@@ -11,7 +11,7 @@ public class MaximumSubarray {
 		long current = list[0];
 		
 		for (int i = 1; i < list.length; ++i) {
-			if (list[i] < current + list[i]) {
+			if (current > 0) {
 				currentEnd = i;
 				current += list[i];
 
@@ -23,9 +23,9 @@ public class MaximumSubarray {
 			}
 			
 			if (current > max) {
-					max = current;
-					maxStart = currentStart;
-					maxEnd = currentEnd;
+				max = current;
+				maxStart = currentStart;
+				maxEnd = currentEnd;
 			}
 		}
 		
@@ -43,14 +43,14 @@ public class MaximumSubarray {
 		long current = list[0];
 		
 		for (int i = 1; i < list.length; ++i) {
-			if (list[i] < current + list[i]) {
+			if (current > 0) {
 				current += list[i];
 			}
 			else {
 				current = list[i];
 			}
 			
-			max = current > max ? current : max;
+			max = Math.max(current, max);
 		}
 		
 		return max;
